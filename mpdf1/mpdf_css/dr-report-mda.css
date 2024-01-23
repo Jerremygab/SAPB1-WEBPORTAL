@@ -1,0 +1,14 @@
+body{
+		font-family: Arial;
+		font-size: 12pt;
+		
+	}
+	
+	table, th, td {
+    border: 0px solid black;
+    border-collapse: collapse;
+	
+	}
+	th, td {
+		padding: 0px;
+	}

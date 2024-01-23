@@ -1,0 +1,294 @@
+
+i:focus,
+i:active
+{
+  outline: none;
+}
+
+button:hover
+{
+	background-color:#D0D0D0 !important;
+}
+
+.hidden
+{
+	display: none;
+}
+
+input, select, label, textarea, td, tr, button
+{
+	color: #000 !important;
+	font-weight: bold !important;
+	border-radius: 0px !important;
+}
+
+.select_box:after{
+  width: 0; 
+  height: 0; 
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #f00;
+  position: absolute;
+  top: 40%;
+  right: 5px;
+  content: "";
+  z-index: 98;
+ }
+ 
+ input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+#window{
+    
+ 
+    -webkit-transition: all ease 1s;
+}
+
+.minimized{
+    background-color: rgba(255,255,255, 0.5);
+    top: 90% !important;
+    
+    width: 50px !important;
+    height: 10px !important;;
+}
+
+.maximized{
+    background-color: rgba(255,255,255, 1);
+    top: 5%;
+   
+}
+
+
+.nav-module{
+	font-size:20px !important; 
+	font-weight:bold; 
+	color: black;
+}
+.nav-link{
+	width:280px !important;
+}
+.nav-li{
+	background-color:#D0D0D0 !important;
+	border-bottom: 1px solid white;
+}
+.nav-li:hover{
+	background-color:#f0ad4e !important;
+}
+.nav-module-span{
+	width:250px !important;
+}
+.nav-icon{
+	font-size:20px !important; 
+	font-weight:bold !important; 
+	color: #009ACD !important;
+}
+.nav-collapse-parent{
+	margin: 0px !important;
+	padding: 0px !important;
+}
+.nav-collapse-child{
+	margin: 0px !important; 
+	padding: 0px !important; 
+}
+.nav-collapse-a{
+	font-size: 20px !important; 
+	font-weight:bold !important;
+	margin: 0px !important; 
+	padding-left: 40px !important;
+}
+.nav-collapse-a:hover{
+	background-color:#B0B0B0 !important;
+}
+.nav-collapse-i{
+	padding-right: 10px;
+	color: #009ACD !important;
+}
+table { border-collapse: collapse; width: 100%; }
+th, td { background: #fff; padding: 8px 16px; }
+
+.rowfunctions li:hover{
+	background-color:#0275db !important;
+	color: white !important;
+	
+}
+
+
+.tableFixHead {
+  overflow: auto;
+   
+  height: 350px;
+}
+
+.tableFixHead thead th {
+  position: sticky;
+     height:20px;
+	 transition:1s height ease;
+  top: 0;
+  z-index: 999;
+ background-color: lightgray;  !important
+}
+
+/* Modal */
+.modal{
+	margin-top: 21px !important;
+}
+
+.modal-title{
+	font-size: 20px !important;
+	font-weight: bold !important;
+}
+
+.modal-body{
+	background-color: #F5F5F5;
+}
+
+.modal-header{
+	padding-top: 5px !important;
+	padding-bottom: 5px !important;
+}
+
+.modal-footer button{
+	/*display: none;*/
+	color: black;
+	width:100px !important;	
+	height: 40px !important;
+	font-size: 15px !important;	
+	background: linear-gradient(to bottom, #FCF6BA, #BF953F); 
+}
+.modal-footer{
+	background-color: #A8A8A8; 
+	border-bottom-width: thick; 
+	border-color: #f0ad4e;
+}
+
+table thead th {
+  border-bottom: 5px solid #f0ad4e !important;
+  background-color: lightgray !important;
+  padding-top:8px !important;
+   padding-bottom:8px !important;
+}
+
+.detailsTable thead th {
+  border-bottom: none !important;
+  background-color: lightgray !important;
+  padding-top: 0 !important;
+   padding-bottom:0 !important;
+}
+.detailsTable.no-footer {
+  border-bottom: none !important;
+}
+.detailsTable tbody tr {
+ padding: 0 !important;
+}
+
+.detailsTable thead td {
+padding: 0 !important;
+}
+.detailsTable tbody td {
+padding: 2px !important;
+
+}
+.table-hover tr:hover td{
+   background-color:#f0ad4e !important;
+}
+body {
+	position: relative;
+}
+
+.image-wrapper {
+	position: absolute;
+	transform: translate(-50%, -50%);
+    opacity: 1;
+}
+
+.image-wrapper.fade-out {
+	opacity: 0;
+	transition: opacity 1s ease-in-out;
+}
+
+.btndisabled:hover{
+	background-color: #f7f8fb !important;
+	
+}
+
+.rowno span{
+	font-size: 13px !important;
+}
+
+input[type="text"][disabled] {
+   color: red;
+}
+
+
+/* #tblDetails tbody tr{
+	height: 25px !important;
+}
+#tblDetails tbody tr td{
+	height: 25px !important;
+}
+#tblDetails tbody tr td input{
+	height: 30px !important;
+}
+#tblDetails tbody tr td button{
+	height: 30px !important;
+}
+ */
+ 
+/* 
+ input[type="date"] {
+    position: relative;
+}
+
+/
+input[type="date"]:after {
+    content: "\25BC"; 
+    color: #555;
+    padding: 0 5px;
+}
+
+
+input[type="date"]:hover:after {
+    color: #bf1400;
+}
+
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    color: transparent;
+    background: transparent;
+}
+
+
+input[type="date"]::-webkit-inner-spin-button {
+    z-index: 1;
+}
+
+
+ input[type="date"]::-webkit-clear-button {
+     z-index: 1;
+ }
+ 
+ ::-webkit-datetime-edit-year-field:not([aria-valuenow]),
+::-webkit-datetime-edit-month-field:not([aria-valuenow]),
+::-webkit-datetime-edit-day-field:not([aria-valuenow]) {
+    color: transparent;
+}
+*/
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    margin: 0;
+	font-size:20px!important;
+}
+
+
+
+
