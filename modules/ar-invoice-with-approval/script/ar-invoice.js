@@ -101,11 +101,12 @@ $(document).ready(function () {
 
 			var docNum = multiCopyFromDR;
 			var docType = 'I';
+			var postedorDraft = 'N/A';
 			// PreviewDoc(docNum,objType);
 
 			setTimeout(function () {
-				PreviewRows(docNum, docType, objType, function () {
-					// alert(objType)
+				PreviewRows(docNum, docType, objType, postedorDraft, function () {
+					
 					baseType = objType
 				});
 			}, 300)
@@ -2983,7 +2984,7 @@ $(document).ready(function () {
 			formData.append('fileToUpload[]', $('#tblAttachment tbody tr:first input.file')[0].files[0]);
 			$('#tblAttachment tbody tr').each(function (i) {
 				x = $(this).children();
-				alert("a")
+				
 				let file = ''
 				let attachmentdate = ''
 				let freetext = ''
@@ -3000,16 +3001,16 @@ $(document).ready(function () {
 					// formData.append('fileToUpload[]', file);
 					// formData.append('attachmentdate', attachmentdate);
 					// formData.append('freetext', freetext);
-					alert(1)
-					alert(file + attachmentdate + freetext)
+					
+					
 				}
 					formData.append('fileToUpload[]', file);
 					formData.append('attachmentdate', attachmentdate);
 					formData.append('freetext', freetext);
-				alert("b")
+				
 
 			});
-			alert(2)
+			
 			
 
 			if (err == 0) {
@@ -3106,7 +3107,7 @@ $(document).ready(function () {
 				// 	console.log('File 2: ' + formData.getAll("file"))
 				// }
 				if(formData.getAll("file") != ''){
-					alert("nagana")
+					
 				setTimeout(function () {
 					formData.append('objectType', 13);
 					formData.append('docentryAttachment', docentry);
@@ -3374,6 +3375,7 @@ $(document).ready(function () {
 						
 						}
 						else {
+							$('#duplicateSINo').modal('show');	
 							$('#messageBar2').addClass('d-none');
 							$('#messageBar3').removeClass('d-none');
 							$('#messageBar').text(res.msg).css({ 'background-color': 'red', 'color': 'white' });
@@ -3411,7 +3413,7 @@ $(document).ready(function () {
 							setTimeout(function () {
 								$('#messageBar').text('').css({ 'background-color': '', 'color': '' });
 
-								window.location.replace("../templates/" + mainFileName + "-document.php");
+								// window.location.replace("../templates/" + mainFileName + "-document.php");
 							}, 3000)
 						},
 					});
@@ -4408,8 +4410,8 @@ $(document).ready(function () {
 				else {
 					$('#txtRemarks').val(`Copied from ${baseTableName} # ` + val.DocNum);
 
-					$('#txtPostingDate').val(val.DocDate).prop("disabled", true);
-					$('#txtPostingDate2').prop("disabled", true);
+					// $('#txtPostingDate').val(val.DocDate).prop("disabled", true);
+					// $('#txtPostingDate2').prop("disabled", true);
 				}
 
 
@@ -4516,11 +4518,15 @@ $(document).ready(function () {
 		$('#btnPreviewJournalEntry').attr("disabled", false);
 	}
 	function PreviewRows(docNum, docType, objType, postedorDraft, callback) {
-		$('#tblDetails tbody').load('../proc/views/vw_getdetailsdata.php?docNum=' + docNum + '&docType=' + docType + '&objType=' + objType + '&postedorDraft=' + postedorDraft, function (result) {
+		
+		$('#tblDetails tbody').load('../proc/views/vw_getdetailsdata.php?docNum=' + docNum + '&docType=' + docType + '&objType=' + objType + '&postedorDraft=' + postedorDraft, function (result){			
+			
 			CheckBatchSerial();
+
 			let val = $('#txtDocTotal').val().split(' ');
 
 			if (objType == baseType && val[val.length - 1] == 0 && $('input.itemcode:first-child').val() != '') {
+				
 				ComputeFooterTotalBeforeDiscount();
 				ComputeFooterTaxAmount();
 				ComputeTotal();

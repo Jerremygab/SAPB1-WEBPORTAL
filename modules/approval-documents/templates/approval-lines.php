@@ -5,7 +5,8 @@ include_once('../../../config/config.php');
 	$EmpId = $_SESSION['SESS_EMP'];
 	$EmpName = $_SESSION['SESS_NAME'];
 	$ApproverIdString = $_SESSION['ApproverEmpId'];
-	$ApproverEmpId = implode(', ', $_SESSION['ApproverEmpId']);
+	$ApproverEmpId = $_SESSION['ApproverEmpId'];
+	// $ApproverEmpId = implode(', ', $_SESSION['ApproverEmpId']);
 	// $status = $_GET['status'];
 	// $statusWhere = '';
 	// if($status == 'All'){
