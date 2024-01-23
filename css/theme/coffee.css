@@ -1,0 +1,12 @@
+:root{
+    --primary-background-color: #FCFCF1;
+    --primary-text-color: #ffffff;
+    --company-name-text-color: #ffffff; 
+    --topBar-background-color:  #E7D6C6; 
+    --sidebar-background-color:  #A88E7A;
+    --secondary-background-color: #A88E7A;
+    --nav-li-hover-background-color:#6A4325;
+    --nav-icon-color:#6A4325;
+    --border-bottom-color: 5px solid  #964B00;
+    --border-top-color: 5px solid   #964B00;
+}
