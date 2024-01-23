@@ -1,0 +1,11 @@
+{
+    "ignore_file_attachment_upload_existence": true,
+    "enable_excel_background_download": true,
+    "excel_download_rows_interval": 1000,
+    "enable_data_row_realtime": false,
+    "enable_fetch_from_extract": true,
+    "disable_refresh_extract_when_fetching": true,
+    "enable_format_drop_down_value_to_name": true,
+    "enable_unified_table": true,
+    "enable_fetch_ids_to_process": false
+}

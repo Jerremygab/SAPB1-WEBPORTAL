@@ -1,0 +1,2 @@
+-- Executed on 2024-01-19 12:35:03pm 
+SELECT CardCode FROM OCRD  WITH (NOLOCK)
