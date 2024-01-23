@@ -1,0 +1,12 @@
+:root {
+  --main-color: linear-gradient(to right bottom, #f2f7f8, #b5eafc, #bfebe0);
+}
+  
+.theme-options .theme{
+  display: block;
+  height: 30px;
+  width: 25px;
+  border-radius: 80%;
+  margin: 5px;
+  cursor: pointer;
+}
