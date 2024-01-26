@@ -1942,7 +1942,51 @@ $(document).ready(function () {
 			{
 				
 				$('#loadModal').modal('show');
-				
+				$.ajax({
+					type: 'POST',
+					url: '../proc/exec/exec_update_' + mainFileName + '.php',
+					data:
+					{
+						
+						udfJson: udfJson.replace(/(\r\n|\n|\r)/gm, '[newline]'),
+						txtDocEntry: txtDocEntry,
+						txtDocNum: txtDocNum,
+						txtAtcEntry:txtAtcEntry,
+						txtRemarks: txtRemarks,
+						txtJournalMemo: txtJournalMemo,
+						txtPayTo: txtPayTo,
+						txtReference: txtReference,
+						txtPayNoDoc: txtPayNoDoc,
+						txtGLCodePayNoDoc: txtGLCodePayNoDoc
+
+
+					},
+					success: function (data) {
+						var res = $.parseJSON(data);
+
+						if (res.valid == true) {
+							$('#messageBar2').addClass('d-none');
+							$('#messageBar3').removeClass('d-none');
+							$('#messageBar').text(res.msg).css({ 'background-color': '#00FF7F', 'color': 'black' });
+							docentry = res.docentry
+
+						
+						}
+						else {
+							$('#messageBar2').addClass('d-none');
+							$('#messageBar3').removeClass('d-none');
+							$('#messageBar').text(res.msg).css({ 'background-color': 'red', 'color': 'white' });
+
+							setTimeout(function () {
+								$('#messageBar').text('').css({ 'background-color': '', 'color': '' });
+
+							}, 5000)
+						}
+
+						$('#loadModal').modal('hide');
+					}
+				});
+
 
 				
 					formData.append('objectType', 18);

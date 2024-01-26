@@ -43,6 +43,7 @@ $serviceType  = $_POST['serviceType'];
 $json = $_POST['json'];
 $jsonWTax = $_POST['jsonWTax'];
 $jsonAttachment = $_POST['jsonAttachment'];
+$jsonDP =  $_POST['jsonDP'];
 $udfJson = $_POST['udfJson'];
 
 $refDocToObj = json_decode($_POST['refDocToObj']);
@@ -62,7 +63,8 @@ $NoOfApprovals = $_SESSION['NoOfApprovals'];
 $NoOfDisapprovals = $_SESSION['NoOfDisapprovals'];
 
 $ApproverEmpId = $_SESSION['ApproverEmpId'];
-// $ApproverEmpId = implode(', ', $_SESSION['ApproverEmpId']);
+$ApproverEmpId = implode(', ', $_SESSION['ApproverEmpId']);
+$dupSIno = '';
 
 
 if ($err == 0) 
@@ -129,8 +131,26 @@ if ($err == 0)
 			$udfJson = json_decode(stripslashes($udfJson));
 				foreach ($udfJson as $key => $value) 
 				{
+					
+					if($value[1] == "U_InvoiceNo"){
+					$qrySINo = odbc_exec($MSSQL_CONN, "USE [".$MSSQL_DB."]; 
+					SELECT U_InvoiceNo FROM OINV WHERE U_InvoiceNo = '$value[0]' AND Canceled = 'N'");
+					while (odbc_fetch_row($qrySINo)){
+						$arr[] = array(
+							"U_InvoiceNo" => odbc_result($qrySINo, 'U_InvoiceNo'),
+						);
+						
+					}
 
-					$oRdr->UserFields->Fields[$value[1]]->Value = $value[0];
+						if(odbc_result($qrySINo, 'U_InvoiceNo') == ''){
+							$oRdr->UserFields->Fields[$value[1]]->Value = $value[0];
+						} else{
+							$dupSIno = 1;
+						}
+					} 
+					// else {
+					// 	$oRdr->UserFields->Fields[$value[1]]->Value = $value[0];
+					// }
 				}
 			
 			if($selShippingType != ''){
@@ -149,6 +169,20 @@ if ($err == 0)
 					// $oRdr->WithholdingTaxData->TaxableAmount = $value[5];
 
 					$oRdr->WithholdingTaxData->Add();
+				}
+			}
+			if(json_decode($jsonDP) != null) 
+			{
+				$jsonDP = json_decode($jsonDP, true);
+				//$ctr = -1;
+				//$a = 0;
+				foreach ($jsonDP as $key => $value) 
+				{
+					$oRdr->DownPaymentsToDraw->DocEntry = $value[0];
+					// $oRdr->WithholdingTaxData->WTAmount = $value[4];
+					// $oRdr->WithholdingTaxData->TaxableAmount = $value[5];
+
+					$oRdr->DownPaymentsToDraw->Add();
 				}
 			}
 			// ===================================== //
@@ -429,7 +463,7 @@ if ($err == 0)
 	}
 }
 
-if ($err == 0) 
+if ($err == 0 & $dupSIno == '') 
 {
 	updateRefDocModal($MSSQL_CONN, $MSSQL_DB, $refDocToObj, $childTable21, $txtDocNum, $objectType);
 	$data = array("valid"=>true, 

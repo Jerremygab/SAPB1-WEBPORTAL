@@ -43,6 +43,7 @@ $serviceType  = $_POST['serviceType'];
 $json = $_POST['json'];
 $jsonWTax = $_POST['jsonWTax'];
 $jsonAttachment = $_POST['jsonAttachment'];
+$jsonDP =  $_POST['jsonDP'];
 $udfJson = $_POST['udfJson'];
 
 $refDocToObj = json_decode($_POST['refDocToObj']);
@@ -126,6 +127,20 @@ if ($err == 0)
 					// $oRdr->WithholdingTaxData->TaxableAmount = $value[5];
 
 					$oRdr->WithholdingTaxData->Add();
+				}
+			}
+			if(json_decode($jsonDP) != null) 
+			{
+				$jsonDP = json_decode($jsonDP, true);
+				//$ctr = -1;
+				//$a = 0;
+				foreach ($jsonDP as $key => $value) 
+				{
+					$oRdr->DownPaymentsToDraw->DocEntry = $value[0];
+					// $oRdr->WithholdingTaxData->WTAmount = $value[4];
+					// $oRdr->WithholdingTaxData->TaxableAmount = $value[5];
+
+					$oRdr->DownPaymentsToDraw->Add();
 				}
 			}
 			// ===================================== //

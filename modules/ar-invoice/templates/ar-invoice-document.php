@@ -430,8 +430,20 @@
 							<label for="inputEmail3" class="col-sm-1 col-form-label " style="color: black;" >%</label>
 							<div class="col-sm-6" >
 							  <input type="text" id="txtFooterDiscountSum" class="form-control text-right footer" maxlength="7">
-							</div>
+							</div> 
 						</div>
+						<!-- DOWNPAYMENT NI GABZ -->
+						<div class="form-group row py-0 my-0" >
+						<label for="inputEmail3" class="col-sm-4 col-form-label " style="color: black;" >Total Down Payment</label>
+							<div class="col-sm-8 input-group mb-1">
+								<div class="input-group-append">
+									<button id="btnDownPayment" class="btn btnGroup" type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; "  data-toggle="modal" data-target="#DownPaymentModal" data-backdrop="false" >
+										<i class="fas fa-list-ul input-prefix" tabindex=0 style="color:blue "></i>
+									</button>
+								</div>
+								<input readonly type="text" id="txtDownPayment" name="txtDownPayment" class="form-control text-right"  placeholder="" aria-label="Username" aria-describedby="basic-addon1 " style="border-bottom-left-radius:5px; border-top-left-radius:5px;">	
+							</div>
+						</div>	
 						<div class="form-group row  py-0 my-0">
 							<label for="inputEmail3" class="col-sm-4 col-form-label " style="color: black;">Tax</label>
 								<div class="col-sm-8 input-group mb-1">
@@ -1870,7 +1882,34 @@
       </div>
     </div>
     <!-- Transact. Type Modal -->
-
+	 <!-- DOWN PAYMENT MODAL NI GABZ -->
+     <div class="modal fade" id="DownPaymentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document" style="width:100%; ">
+        <!--Content-->
+        <div class="modal-content-full-width modal-content" style="height: 1000px; width: 1800px;">
+          <!--Header-->
+          <div class="modal-header"  style="background-color: #A8A8A8; border-bottom-width: thick; border-color: #f0ad4e;">
+            <h4 class="modal-title w-100" id="myModalLabel" style="color:black">Total Down Payment</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btnClose">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <!--Body-->
+          <div class="modal-body"> 
+           	<div id="DownPaymentResult" class="mt-5">
+				
+			</div>
+          </div>
+          <!--Footer-->
+          <div class="modal-footer">
+						<button type="button" class="btn btn-secondary d-none" id="" >Update</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btnUpdateWTLiable">Close</button>
+          </div>
+        </div>
+        <!--/.Content-->
+      </div>
+    </div>
+    <!-- ========================== -->
     <!-- DocNumber Modal -->
     <div class="modal fade" id="docNumModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
       <div class="modal-dialog modal-xl" role="document" style="width:100%">

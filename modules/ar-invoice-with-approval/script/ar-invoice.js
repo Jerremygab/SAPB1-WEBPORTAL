@@ -745,6 +745,7 @@ $(document).ready(function () {
 		let contactPersonCode = $(this).children('td.item-8').text();
 		txtCurrency = $(this).children('td.item-9').text();
 		let addressID = '';
+		generateDPRows(cardCode); 
 
 
 
@@ -1098,7 +1099,46 @@ $(document).ready(function () {
 		AddRowAttachment();
 	});
 
+	$(document.body).on('change', 'input.chkboxInvoice', function () 
+		{
+			
+			netamount = 0.00;
+			grossamount = 0.00;
+			tax = 0.00;
+			let vat = parseFloat($('#txtVatSum').val().replace(/,/g,''));
+			
 
+			$('#tblDownPaymentTable tbody tr').each(function()
+				{
+					if($(this).find('input.chkboxInvoice').prop('checked') == true){
+						
+						netamount += parseFloat($(this).find('input.DPnetamount').val());
+						grossamount += parseFloat($(this).find('input.DPgrossamount').val());
+						tax += parseFloat($(this).find('input.DPtaxamount').val());
+						
+					}
+				});
+					console.log(vat)
+					console.log(tax)
+
+		setTimeout(function(){
+			if(tax >= vat){
+				let TaxAmount = tax - vat;
+
+				$('#txtVatSum').val(FormatMoney(TaxAmount));
+				console.log(TaxAmount)
+			}
+			else if(tax <= vat){
+				let TaxAmount = vat - tax;
+
+				$('#txtVatSum').val(FormatMoney(TaxAmount));
+				console.log(TaxAmount)
+			}
+			
+			$('#txtDownPayment').val(FormatMoney(netamount));
+			$('#txtPaidToDate').val(FormatMoney(grossamount));
+		},2000);
+		});
 
 	// $(document.body).on('click', '#browseButton', function (event) {
 	// 	event.preventDefault();
@@ -2656,6 +2696,13 @@ $(document).ready(function () {
 
 		PreviewDocJournalEntry(docNum, objType, currency);
 	});
+
+	$('#DownPaymentModal').on('shown.bs.modal',function(){
+		var docEntry = $('#txtDocEntry').val();
+		if (docEntry != '') {
+			generateDPAdded(docEntry)
+		}
+	});
 	//Submit
 	//Search
 	let previousValue = '';
@@ -2973,6 +3020,31 @@ $(document).ready(function () {
 			jsonAttachment += otArrAttachment.join(",") + '}';
 			console.log(jsonAttachment);
 
+			var jsonDP = '{';
+			var otArrDP = [];
+			var tbl = $('#DownPaymentResult tbody tr').each(function (i) 
+			{
+			
+				x = $(this).children();
+				var itArr = [];
+					if ($(this).find('input.chkboxInvoice').prop('checked') == true){
+						itArr.push('"' + $(this).find('input.docnum').val() + '"');
+						itArr.push('"' + $(this).find('input.DPdoctype').val()+ '"');
+						itArr.push('"' + $(this).find('input.DPnetamount').val().replace(/,/g, '') + '"');
+						itArr.push('"' + $(this).find('input.DPtaxamount').val().replace(/,/g, '') + '"');
+						itArr.push('"' + $(this).find('input.DPgrossamount').val().replace(/,/g, '') + '"');
+						itArr.push('"' + $(this).find('input.DPopennetamount').val().replace(/,/g, '') + '"');
+						itArr.push('"' + $(this).find('input.DPopentaxamount').val().replace(/,/g, '') + '"');
+						itArr.push('"' + $(this).find('input.DPopengrossamount').val().replace(/,/g, '') + '"');
+						itArr.push('"' + $(this).find('input.DPdocdate').val().replace(/,/g, '') + '"');
+					
+						otArrDP.push('"' + i + '": [' + itArr.join(',') + ']'); 
+					
+				}
+			});
+			
+			jsonDP += otArrDP.join(",") + '}';
+			console.log(jsonDP)
 			let formData = new FormData();
 			let docentry = '';
 			
@@ -3028,6 +3100,7 @@ $(document).ready(function () {
 						json: json.replace(/(\r\n|\n|\r)/gm, '[newline]'),
 						jsonWTax: jsonWTax.replace(/(\r\n|\n|\r)/gm, '[newline]'),
 						jsonAttachment: jsonAttachment.replace(/(\r\n|\n|\r)/gm, '[newline]'),
+						jsonDP: jsonDP.replace(/(\r\n|\n|\r)/gm, '[newline]'),
 						udfJson: udfJson.replace(/(\r\n|\n|\r)/gm, '[newline]'),
 						selSeries: selSeries,
 						txtCardCode: txtCardCode,
@@ -3086,6 +3159,7 @@ $(document).ready(function () {
 							
 						}
 						else {
+							$('#duplicateSINo').modal('show');	
 							$('#messageBar2').addClass('d-none');
 							$('#messageBar3').removeClass('d-none');
 							$('#messageBar').text(res.msg).css({ 'background-color': 'red', 'color': 'white' });
@@ -3128,8 +3202,8 @@ $(document).ready(function () {
 							setTimeout(function () {
 								$('#messageBar').text('').css({ 'background-color': '', 'color': '' });
 
-								// window.location.replace("../templates/" + mainFileName + "-document.php");
-							}, 5000)
+								 window.location.replace("../templates/" + mainFileName + "-document.php");
+							}, 4000)
 						},
 					});
 				}, 2000)
@@ -3413,8 +3487,8 @@ $(document).ready(function () {
 							setTimeout(function () {
 								$('#messageBar').text('').css({ 'background-color': '', 'color': '' });
 
-								// window.location.replace("../templates/" + mainFileName + "-document.php");
-							}, 3000)
+								window.location.replace("../templates/" + mainFileName + "-document.php");
+							}, 2000)
 						},
 					});
 				}, 2000)
@@ -4271,6 +4345,7 @@ $(document).ready(function () {
 		}
 
 		let trnspCode;
+		generateDPAdded(docNum)
 		$.getJSON('../proc/views/vw_getheaderdata.php?docNum=' + docNum + '&objType=' + objType + '&postedorDraft=' + postedorDraft, function (data) {
 			
 			$.each(data, function (key, val) {
@@ -4323,6 +4398,7 @@ $(document).ready(function () {
 				// $('#txtCancellationDate').val(val.CancelDate);
 				// $('#txtRequiredDate').val(val.ReqDate);
 				if (objType == objectType) {
+					$('#txtDownPayment').val(val.TotalDownPayment)
 					$('#txtFooterDiscountSum').val(val.DiscSum);
 					$('#txtFooterDiscountPercentage').val(val.DiscPrcnt);
 					$('#txtTotalBeforeDiscount').val(val.TotalBeforeDisc);
@@ -4542,6 +4618,33 @@ $(document).ready(function () {
 			callback();
 		});
 	}
+	// DOWN PAYMENT NI GABZ
+	function generateDPRows(cardCode){
+	
+		console.log(cardCode)
+		$('#DownPaymentResult').load('../proc/views/vw_getdetailsdataDP.php?cardCode=' + cardCode), function (data){
+			console.log(data)
+			
+		};
+	}
+
+	function generateDPAdded(docNum){
+
+		$('#DownPaymentResult').load('../proc/views/vw_getdetailsdataDP-added.php?docNum=' + docNum), function (data){
+			console.log(data)
+
+			$('#tblDownPaymentTable tbody tr').each(function()
+			{
+				if($(this).find('input.chkboxInvoice').prop('checked') == true){
+					
+					netamount += parseFloat($(this).find('input.DPnetamount').val());
+					
+				}
+				$('#txtDownPayment').val(FormatMoney(netamount));
+			});
+		};
+	}
+	// ===================== //
 	function PreviewUDF(docNum, objType) {
 		let mainTable;
 		if (objType == objectType)
@@ -4714,6 +4817,7 @@ $(document).ready(function () {
 			callback();
 		});
 	}
+
 	// WTAX NI GABZ
 	function ComputeTaxable() {
 		let amount = 0.00;
