@@ -1,7 +1,7 @@
 <?php session_start(); 
 $MSSQL_USER = 'sa';
-$MSSQl_PASSWORD = 'P@ssw0rd1';
-$MSSQL_SERVER = 'BENNIE';
+$MSSQl_PASSWORD = 'sapb1';
+$MSSQL_SERVER = 'JERREMY';
 $MSSQL_DB = 'SBO-COMMON';
 
 $MSSQL_CONN = odbc_connect("Driver={SQL Server Native Client 11.0};Server=$MSSQL_SERVER;", $MSSQL_USER, $MSSQl_PASSWORD) or 
@@ -30,7 +30,7 @@ die('Could not open database!');
 
 </head>
 
-<body id="" style=" -moz-transform: scale(0.7, 0.7); /* Moz-browsers */
+<body id="" style=" --moz-transform: scale(0.7, 0.7); /* Moz-browsers */
     zoom: 0.7; /* Other non-webkit browsers */
     zoom: 70%; /* Webkit browsers */
 ">

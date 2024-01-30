@@ -8,10 +8,10 @@ $txtUsername = valid_input($_POST['txtUsername']);
 $txtPassword = valid_input($_POST['txtPassword']);
 
 $MSSQL_USER = 'sa';
-$MSSQl_PASSWORD = 'P@ssw0rd1';
-$MSSQL_SERVER = 'BENNIE';
+$MSSQl_PASSWORD = 'sapb1';
+$MSSQL_SERVER = 'JERREMY';
 $MSSQL_DB = $selCompany;
-$MSSQL_DB2 = 'GSDC-COMMON-2';
+$MSSQL_DB2 = 'USER-COMMON';
 
 $_SESSION['MSSQL_DB'] = $selCompany;
 
