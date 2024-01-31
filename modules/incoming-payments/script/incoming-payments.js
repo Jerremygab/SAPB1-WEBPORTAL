@@ -474,7 +474,7 @@ $(document).ready(function () {
 			// inputElement.click();
 			AddRowAttachment();
 		});
-		$(document.body).on('change', '#txtTotalAmount', function (event) {
+		$(document.body).on('change', '#txtCashAmount', function (event) {
 			setTimeout(function (){
 				ComputeTotalBalance();
 				$('#txtBalanceAmount').val('');
@@ -1673,8 +1673,8 @@ $(document).ready(function () {
 			}
 			
 
-			alert(txtReference)
-			alert(txtRemarks)
+			// alert(txtReference)
+			// alert(txtRemarks)
 			var json = '{';
 			var otArr = [];
 	
@@ -3023,14 +3023,15 @@ $(document).ready(function () {
 		function ComputeTotalBalance(){
 
 			var overall = $('#txtOverallAmount').val();
-			var total = $('#txtTotalAmount').val();
+			var total = $('#txtCashAmount').val();
 
-			overall2 = isNaN(parseFloat(overall.replace(/,/g,'')))? 0: parseFloat(overall.replace(/,/g,''));
-			total2 = isNaN(parseFloat(total.replace(/,/g,'')))? 0: parseFloat(total.replace(/,/g,''));
+			overall = isNaN(parseFloat(overall.replace(/,/g,'')))? 0: parseFloat(overall.replace(/,/g,''));
+			total = isNaN(parseFloat(total.replace(/,/g,'')))? 0: parseFloat(total.replace(/,/g,''));
 			
-			let balDue = overall2 - total2;
+			let balDue = overall - total;
 				
-			$('#txtCashAmount').val(FormatMoney(balDue));
+			$('#txtChargeAmount').val(FormatMoney(balDue));
+			$('#txtChargeAmount').val(FormatMoney(balDue));
 			$('#txtPaidAmount').val(FormatMoney(overall));
 		}
 	
@@ -3063,6 +3064,7 @@ $(document).ready(function () {
 			let transferSum = $('#txtTransferAmount').val();
 			let payNoDocSum = $('#txtNoDocSum').val();
 			let docTotal = $('#txtDocTotal').val();
+
 	
 			checkSum = isNaN(parseFloat(checkSum.replace(/,/g,'')))? 0: parseFloat(checkSum.replace(/,/g,''));
 			cashSum = isNaN(parseFloat(cashSum.replace(/,/g,'')))? 0: parseFloat(cashSum.replace(/,/g,''));
@@ -3072,8 +3074,8 @@ $(document).ready(function () {
 	
 			let payment = checkSum + cashSum + transferSum;
 			let openBalance = docTotal - payment ;
-			
-			// $('#txtOpenBalance').val(FormatMoney(openBalance));
+
+			$('#txtOpenBalance').val(FormatMoney(openBalance));
 			
 			
 			

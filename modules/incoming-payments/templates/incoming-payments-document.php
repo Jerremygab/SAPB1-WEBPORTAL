@@ -1451,13 +1451,13 @@
                                                 style="color: black;">Total</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control billInputs  text-right"
-                                                    id="txtTotalAmount" placeholder="" value=0.00 >
+                                                    id="txtCashAmount" placeholder="" value=0.00>
                                             </div>
                                             <label for="inputEmail3" class="col-sm-3 col-form-label py-1 mt-2"
                                                 style="color: black;">Bank Charge</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control billInputs  text-right"
-                                                    id="txtCashAmount" placeholder="" value=0.00>
+                                                    id="txtChargeAmount" placeholder="" value=0.00 >
                                             </div>
                                             <label for="inputEmail3" class="col-sm-3 col-form-label py-1 mt-2"
                                                 style="color: black;" readonly>Paid</label>
