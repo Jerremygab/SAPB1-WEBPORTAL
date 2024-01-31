@@ -464,21 +464,22 @@ $(document).ready(function () {
 
 			let targetPath = 'C:/Users/Administrator/Desktop/JCBA/ATTACHMENTS/';
 	
-	
 			// $('#tblAttachment > tbody tr').each(function(){
-	
-	
-	
 			// 	$(this).find('input.targetpath').val(targetPath);
 	
 			// 	// itemnameElement.value = fileName;
 			// 	// alert(itemnameElement.value = fileName)
 			// });
-	
-	
-	
+
 			// inputElement.click();
 			AddRowAttachment();
+		});
+		$(document.body).on('change', '#txtTotalAmount', function (event) {
+			setTimeout(function (){
+				ComputeTotalBalance();
+				$('#txtBalanceAmount').val('');
+			},300)
+			
 		});
 		$(document.body).on('click', '#tblCheck > tbody tr > td > div.input-group', function () 
 		{
@@ -1644,6 +1645,7 @@ $(document).ready(function () {
 			let txtCardCode = $('#txtCardCode').val();
 			let txtCashGLCode = $('#txtCashGLCode').val();
 			let txtCashAmount = $('#txtCashAmount').val();
+			let txtTotalAmount = $('#txtTotalAmount').val();
 			let txtTransferGLCode = $('#txtTransferGLCode').val();
 			let txtTransferDate = $('#txtTransferDate').val();
 			let txtTransferRef = $('#txtTransferRef').val();
@@ -1763,6 +1765,7 @@ $(document).ready(function () {
 						txtCardCode : txtCardCode,
 						txtCashGLCode : txtCashGLCode,
 						txtCashAmount : txtCashAmount,
+						txtTotalAmount : txtTotalAmount,
 						txtTransferGLCode : txtTransferGLCode,
 						txtTransferDate : txtTransferDate,
 						txtTransferRef : txtTransferRef,
@@ -2697,7 +2700,10 @@ $(document).ready(function () {
 					$('#txtVatSum').val(val.VatSum);
 					$('#txtNoDocSum').val(val.NoDocSum);
 	
-				
+					$('#txtPaidAmount').val(val.DocTotal);
+					$('#txtTotalAmount').val(val.DocTotal);
+					$('#txtOverallAmount').val(val.DocTotal);
+
 					$('#txtCashAmount').val(val.CashSum);
 					$('#txtCashGLCode').val(val.CashAcct);
 					$('#txtCashGLName').val(val.CashGLName);
@@ -3013,6 +3019,20 @@ $(document).ready(function () {
 				
 			return result; 
 		}
+
+		function ComputeTotalBalance(){
+
+			var overall = $('#txtOverallAmount').val();
+			var total = $('#txtTotalAmount').val();
+
+			overall2 = isNaN(parseFloat(overall.replace(/,/g,'')))? 0: parseFloat(overall.replace(/,/g,''));
+			total2 = isNaN(parseFloat(total.replace(/,/g,'')))? 0: parseFloat(total.replace(/,/g,''));
+			
+			let balDue = overall2 - total2;
+				
+			$('#txtCashAmount').val(FormatMoney(balDue));
+			$('#txtPaidAmount').val(FormatMoney(overall));
+		}
 	
 		function ComputePayment(){
 			let amount = 0.00;
@@ -3030,6 +3050,9 @@ $(document).ready(function () {
 			})
 			
 			$('#txtDocTotal').val(FormatMoney(amount));
+			$('#txtOverallAmount').val(FormatMoney(amount));
+			$('#txtBalanceAmount').val(FormatMoney(amount));
+			
 			ComputeBalance();
 	
 		}	
@@ -3050,7 +3073,7 @@ $(document).ready(function () {
 			let payment = checkSum + cashSum + transferSum;
 			let openBalance = docTotal - payment ;
 			
-			$('#txtOpenBalance').val(FormatMoney(openBalance));
+			// $('#txtOpenBalance').val(FormatMoney(openBalance));
 			
 			
 			

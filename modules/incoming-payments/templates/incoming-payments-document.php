@@ -1434,10 +1434,36 @@
                                                     placeholder="" readonly>
                                             </div>
                                             <label for="inputEmail3" class="col-sm-3 col-form-label py-1 mt-2"
-                                                style="color: black;">Cash Sum</label>
+                                                style="color: black;">Overall Amount</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control billInputs  text-right"
+                                                    id="txtOverallAmount" placeholder="" value=0.00 readonly>
+                                            </div>
+                                            <label for="inputEmail3" class="col-sm-3 col-form-label py-1 mt-2"
+                                                style="color: black;">Balance Due</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control billInputs  text-right"
+                                                    id="txtBalanceAmount" placeholder="" value=0.00 readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label for="inputEmail3" class="col-sm-3 col-form-label py-1 mt-2"
+                                                style="color: black;">Total</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control billInputs  text-right"
+                                                    id="txtTotalAmount" placeholder="" value=0.00 >
+                                            </div>
+                                            <label for="inputEmail3" class="col-sm-3 col-form-label py-1 mt-2"
+                                                style="color: black;">Bank Charge</label>
                                             <div class="col-sm-9">
                                                 <input type="text" class="form-control billInputs  text-right"
                                                     id="txtCashAmount" placeholder="" value=0.00>
+                                            </div>
+                                            <label for="inputEmail3" class="col-sm-3 col-form-label py-1 mt-2"
+                                                style="color: black;" readonly>Paid</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" class="form-control billInputs  text-right"
+                                                    id="txtPaidAmount" placeholder="" value=0.00 readonly>
                                             </div>
                                         </div>
                                     </div>
