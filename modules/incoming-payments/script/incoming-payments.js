@@ -1581,6 +1581,17 @@ $(document).ready(function () {
 										$('#messageBar2').removeClass('d-none');
 									},5000)
 				}
+				else if ($('#txtOwnerCode').val() == '') {
+					err = 1;
+					$('#messageBar2').addClass('d-none');
+					$('#messageBar3').removeClass('d-none');
+					$('#messageBar').text('Please select owner!').css({ 'background-color': 'red', 'color': 'white' });
+		
+					setTimeout(function () {
+						$('#messageBar').text('').css({ 'background-color': '', 'color': '' });
+						$('#messageBar2').removeClass('d-none');
+					}, 5000)
+				}
 			}
 			else{
 					if($('#tblDetails tbody tr').find('input.glaccount').val() == '' ){
@@ -1643,6 +1654,7 @@ $(document).ready(function () {
 			let txtSeriesOVPM = $('#txtSeriesOVPM').val();
 			let txtBPLId = $('#txtBPLId').val();
 			let txtCardCode = $('#txtCardCode').val();
+			var txtOwnerCode = $('#txtOwnerCode').val();
 			let txtCashGLCode = $('#txtCashGLCode').val();
 			let txtCashAmount = $('#txtCashAmount').val();
 			let txtTotalAmount = $('#txtTotalAmount').val();
@@ -1762,6 +1774,7 @@ $(document).ready(function () {
 						udfJson: udfJson.replace(/(\r\n|\n|\r)/gm, '[newline]'),
 						txtSeriesOVPM : txtSeriesOVPM,
 						txtBPLId : txtBPLId,
+						txtOwnerCode: txtOwnerCode,
 						txtCardCode : txtCardCode,
 						txtCashGLCode : txtCashGLCode,
 						txtCashAmount : txtCashAmount,
@@ -1894,6 +1907,16 @@ $(document).ready(function () {
 									$('#messageBar').text('').css({'background-color': '', 'color': ''});	
 									$('#messageBar2').removeClass('d-none');
 								},5000)
+			}else if ($('#txtOwnerCode').val() == '') {
+				err = 1;
+				$('#messageBar2').addClass('d-none');
+				$('#messageBar3').removeClass('d-none');
+				$('#messageBar').text('Please select owner!').css({ 'background-color': 'red', 'color': 'white' });
+	
+				setTimeout(function () {
+					$('#messageBar').text('').css({ 'background-color': '', 'color': '' });
+					$('#messageBar2').removeClass('d-none');
+				}, 5000)
 			}
 			if(err == 0){
 			var udfJson = '{';
@@ -1911,6 +1934,7 @@ $(document).ready(function () {
 		   
 			let txtDocEntry = $('#txtDocEntry').val();
 			let txtDocNum = $('#txtDocNum').val();
+			var txtOwnerCode = $('#txtOwnerCode').val();
 			let txtAtcEntry = $('#txtAtcEntry').val();
 			let txtRemarks = $('#txtRemarks').val();
 			let txtJournalMemo = $('#txtJournalMemo').val();
@@ -2658,7 +2682,8 @@ $(document).ready(function () {
 					$('#txtTotalBeforeDiscount2').val(val.NetTotal);
 					$('#txtDocTotal2').val(val.DocTotal);
 					$('#txtOpenBalance').val(val.OpenBal);
-	
+					$('#txtOwnerCode').val(val.EmpID);
+					$('#txtOwnerName').val(val.EmployeeName);
 					
 					if(objType == 24){
 					$('#txtDocNum').val(val.DocNum);
@@ -2716,9 +2741,6 @@ $(document).ready(function () {
 	
 					$('#txtSalesEmpCode').val(val.SlpCode);
 					$('#txtSalesEmpName').val(val.SlpName);
-					
-					$('#txtOwnerCode').val(val.EmpID);
-					$('#txtOwnerName').val(val.EmployeeName);
 					
 					if(objType == 24){
 					$('#txtRemarks').val(val.Comments);

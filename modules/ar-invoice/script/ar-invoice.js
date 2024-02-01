@@ -3164,8 +3164,6 @@ $(document).ready(function () {
 						url: '../proc/views/vw_uploadFile.php',
 						type: 'post',
 						data: formData
-
-
 						 ,
 						contentType: false,
 						processData: false,

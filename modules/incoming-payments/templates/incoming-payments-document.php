@@ -344,7 +344,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group row  py-0 my-0 d-none">
+                                            <div class="form-group row  py-0 my-0">
                                                 <label class="col-sm-3 col-form-label "
                                                     style="color: black;">Owner</label>
                                                 <div class="col-sm-9 ">
@@ -789,7 +789,66 @@
     </div>
     <!-- Contact Person Modal -->
 
+<!-- Employee Modal -->
+<div class="modal fade" id="empModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+      <div class="modal-dialog modal-xl" role="document" style="width:100%">
+        <!--Content-->
+        <div class="modal-content-full-width modal-content">
+          <!--Header-->
+          <div class="modal-header"  style="background-color: #A8A8A8; border-bottom-width: thick; border-color: #f0ad4e;">
+            <h4 class="modal-title w-100" id="myModalLabel" style="color:black">List of Employee</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <!--Body-->
+          <div class="modal-body">
+            <table class="table table-striped table-bordered table-hover" id="tblEmployee" style="width:100%">
+						<thead>
+							<tr>
+								<th >#</th>
+								<th class="d-none">Employee Code</th>
+								<th>Employee Name</th>
+								
+							</tr>
+						</thead>
+						<tbody>
+						<?php
+							$itemno = 1;
+							$qry = odbc_exec($MSSQL_CONN, "USE [".$MSSQL_DB."]; SELECT DISTINCT
+																						T0.EmpId, 
+																						T0.LastName + ', ' + T0.FirstName AS Name
+																						
+																						
+																						FROM OHEM T0
+																						
+																						ORDER BY T0.EmpId ASC");
+								while (odbc_fetch_row($qry)) 
+								{
+									echo '<tr class="">
+												<td>'.$itemno.'</td>
+												<td class="item-1 d-none">'.odbc_result($qry, 'EmpId').'</td>
+												<td class="item-2">'.odbc_result($qry, 'Name').'</td>
+											  </tr>';
+									$itemno++;	  
+								}
+								
+								odbc_free_result($qry);
+							
 
+						?>
+						</tbody>
+					</table>
+          </div>
+          <!--Footer-->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        <!--/.Content-->
+      </div>
+    </div>
+    <!-- Employee Modal -->
     <!-- Payment Terms Modal -->
     <div class="modal fade" id="paymentTermsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
         aria-hidden="true">

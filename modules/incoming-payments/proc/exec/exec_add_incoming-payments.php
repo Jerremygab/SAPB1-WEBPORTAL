@@ -32,10 +32,12 @@ $selTransactionType = $_POST['selTransactionType'];
 $txtPayNoDoc = $_POST['txtPayNoDoc'];
 $txtGLCodePayNoDoc = $_POST['txtGLCodePayNoDoc'];
 $txtJournalMemo = $_POST['txtJournalMemo'];
+$txtOwnerCode  = $_POST['txtOwnerCode'];
 // $txtAcctName = $_POST['acctName'];
 // $txtAcctNumber = $_POST['acctNumber'];
 $txtCheckAmountTotal = $_POST['txtCheckAmountTotal'];
 $udfJson = $_POST['udfJson'];
+$txtOwnerCode = $_SESSION['SESS_EMP'];
 $Cash = 0.00;
 
 
@@ -96,6 +98,7 @@ if ($err == 0)
 			$oRdr->CounterReference = $txtReference;
 			$oRdr->Remarks = $txtRemarks;
 			$oRdr->JournalRemarks = $txtJournalMemo;
+			// $oRdr->DocumentsOwner  = $txtOwnerCode;
 			
 			
 
@@ -134,9 +137,10 @@ if ($err == 0)
 						// $oRdr->Invoices->DistributionRule2 = $value[4];
 						// $oRdr->Invoices->DistributionRule3 = $value[5];
 							
-							
-						
 
+						// $qrySINo = odbc_exec($MSSQL_CONN, "USE [".$MSSQL_DB."]; 
+						// UPDATE ORCT SET OwnerCode = '$txtOwnerCode'
+						// WHERE DocEntry = '$docentry'");
 		               				
 						$oRdr->Invoices->Add();
 					}		
@@ -237,7 +241,11 @@ if ($err == 0)
 				else
 				{
 					$vCmp->GetNewObjectCode($docentry);
-	
+					
+					$qrySINo = odbc_exec($MSSQL_CONN, "USE [".$MSSQL_DB."]; 
+						UPDATE ORCT SET OwnerCode = '$txtOwnerCode'
+						WHERE DocEntry = '$docentry'");
+		               				
 				}	 
 
 				
