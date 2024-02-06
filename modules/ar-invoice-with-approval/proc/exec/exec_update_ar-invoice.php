@@ -109,9 +109,9 @@ if ($err == 0)
 							$dupSIno = 1;
 						}
 					} 
-					// else {
-					// 	$oRdr->UserFields->Fields[$value[1]]->Value = $value[0];
-					// }
+					else {
+						$oRdr->UserFields->Fields[$value[1]]->Value = $value[0];
+					}
 				}
 			
 			
@@ -131,7 +131,7 @@ if ($err == 0)
 	}
 }
 
-if ($err == 0 & $dupSIno == '') 
+if ($err == 0 && $dupSIno == '') 
 {
 	// updateRefDocModal($MSSQL_CONN, $MSSQL_DB, $refDocToObj, $childTable21, $txtDocNum, $objectType);
 	$data = array("valid"=>true, 

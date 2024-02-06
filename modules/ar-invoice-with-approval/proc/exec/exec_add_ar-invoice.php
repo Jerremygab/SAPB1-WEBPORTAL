@@ -148,9 +148,9 @@ if ($err == 0)
 							$dupSIno = 1;
 						}
 					} 
-					// else {
-					// 	$oRdr->UserFields->Fields[$value[1]]->Value = $value[0];
-					// }
+					else {
+						$oRdr->UserFields->Fields[$value[1]]->Value = $value[0];
+					}
 				}
 			
 			if($selShippingType != ''){
@@ -369,15 +369,6 @@ if ($err == 0)
 				}
 			} 
 			
-						
-				
-
-			
-			
-						
-				
-
-
 						// $oRdr->Lines->ItemCode = '1000001505';
 						// $oRdr->Lines->Quantity = 1;
 						// $oRdr->Lines->UnitPrice = 491.07;
@@ -463,7 +454,7 @@ if ($err == 0)
 	}
 }
 
-if ($err == 0 & $dupSIno == '') 
+if ($err == 0 && $dupSIno == '') 
 {
 	updateRefDocModal($MSSQL_CONN, $MSSQL_DB, $refDocToObj, $childTable21, $txtDocNum, $objectType);
 	$data = array("valid"=>true, 

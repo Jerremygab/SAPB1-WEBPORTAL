@@ -3089,6 +3089,33 @@ $(document).ready(function () {
 				$('#loadModal').modal('show');
 				console.log(formData)
 
+				console.log('File 1: ' + formData.getAll("file"))
+				// if(formData.getAll("file") != ''){
+				// 	console.log('File 2: ' + formData.getAll("file"))
+				// }
+				if(formData.getAll("file") != ''){
+					
+					setTimeout(function () {
+						formData.append('objectType', 13);
+						formData.append('docentryAttachment', docentry);
+						formData.append('lineno', 0); 
+
+						alert
+						$.ajax({
+							url: '../proc/views/vw_uploadFile.php',
+							type: 'post',
+							data: formData
+
+
+							,
+							contentType: false,
+							processData: false,
+							success: function (data) {
+								console.log(data)
+							},
+						});
+					}, 2000)
+				}
 				
 
 
@@ -3156,6 +3183,11 @@ $(document).ready(function () {
 							$('#messageBar').text(res.msg).css({ 'background-color': '#00FF7F', 'color': 'black' });
 							docentry = res.docentry
 
+							setTimeout(function () {
+								$('#messageBar').text('').css({ 'background-color': '', 'color': '' });
+
+								 window.location.replace("../templates/" + mainFileName + "-document.php");
+							}, 4000)
 							
 						}
 						else {
@@ -3172,42 +3204,6 @@ $(document).ready(function () {
 						$('#loadModal').modal('hide');
 					}
 				});
-
-
-				
-
-				console.log('File 1: ' + formData.getAll("file"))
-				// if(formData.getAll("file") != ''){
-				// 	console.log('File 2: ' + formData.getAll("file"))
-				// }
-				if(formData.getAll("file") != ''){
-					
-				setTimeout(function () {
-					formData.append('objectType', 13);
-					formData.append('docentryAttachment', docentry);
-					formData.append('lineno', 0); 
-
-					alert
-					$.ajax({
-						url: '../proc/views/vw_uploadFile.php',
-						type: 'post',
-						data: formData
-
-
-						 ,
-						contentType: false,
-						processData: false,
-						success: function (data) {
-							console.log(data)
-							setTimeout(function () {
-								$('#messageBar').text('').css({ 'background-color': '', 'color': '' });
-
-								 window.location.replace("../templates/" + mainFileName + "-document.php");
-							}, 4000)
-						},
-					});
-				}, 2000)
-			}
 			}
 			else {
 				$('#messageBar').val('Out of bounds').css({ 'background-color': 'red', 'color': 'white' });
@@ -3388,6 +3384,24 @@ $(document).ready(function () {
 
 			if (err == 0) {
 
+				setTimeout(function () {
+					formData.append('objectType', 13);
+					formData.append('docentryAttachment', docentry);
+					formData.append('lineno', 0);
+
+					console.log(formData)
+					
+					$.ajax({
+						url: '../proc/views/vw_uploadFile.php',
+						type: 'post',
+						data: formData,
+						contentType: false,
+						processData: false,
+						success: function (data) {
+						},
+					});
+				}, 2000)
+
 				$('#loadModal').modal('show');
 				$.ajax({
 					type: 'POST',
@@ -3446,6 +3460,11 @@ $(document).ready(function () {
 							$('#messageBar').text(res.msg).css({ 'background-color': '#00FF7F', 'color': 'black' });
 							docentry = res.docentry
 
+							setTimeout(function () {
+								$('#messageBar').text('').css({ 'background-color': '', 'color': '' });
+
+								window.location.replace("../templates/" + mainFileName + "-document.php");
+							}, 2000)
 						
 						}
 						else {
@@ -3463,35 +3482,6 @@ $(document).ready(function () {
 						$('#loadModal').modal('hide');
 					}
 				});
-
-				
-	
-				// })
-				// console.log(itArr)
-
-				setTimeout(function () {
-					formData.append('objectType', 13);
-					formData.append('docentryAttachment', docentry);
-					formData.append('lineno', 0);
-
-					console.log(formData)
-					
-					$.ajax({
-						url: '../proc/views/vw_uploadFile.php',
-						type: 'post',
-						data: formData,
-						contentType: false,
-						processData: false,
-						success: function (data) {
-
-							setTimeout(function () {
-								$('#messageBar').text('').css({ 'background-color': '', 'color': '' });
-
-								window.location.replace("../templates/" + mainFileName + "-document.php");
-							}, 2000)
-						},
-					});
-				}, 2000)
 			}
 			else {
 				$('#messageBar').val('Out of bounds').css({ 'background-color': 'red', 'color': 'white' });
