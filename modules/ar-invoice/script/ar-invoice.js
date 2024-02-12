@@ -3067,7 +3067,29 @@ $(document).ready(function () {
 				$('#loadModal').modal('show');
 				console.log(formData)
 
-				
+				if(formData.getAll("file") != ''){
+					
+					setTimeout(function () {
+						formData.append('objectType', 13);
+						formData.append('docentryAttachment', docentry);
+						formData.append('lineno', 0); 
+
+						alert
+						$.ajax({
+							url: '../proc/views/vw_uploadFile.php',
+							type: 'post',
+							data: formData
+
+
+							,
+							contentType: false,
+							processData: false,
+							success: function (data) {
+								console.log(data)
+							},
+						});
+					}, 2000)
+				}
 
 				$.ajax({
 					type: 'POST',
@@ -3117,7 +3139,7 @@ $(document).ready(function () {
 						txtWtLiableAcctCode: txtWtLiableAcctCode,
 
 						serviceType: serviceType,
-
+						
 						txtDocNum: $('#txtDocNum').val(),
 						objectType: objectType,
 						refDocToObj: JSON.stringify(getFinalRefDocToObj(origRefDocToArr, refDocToArr)),
@@ -3133,9 +3155,15 @@ $(document).ready(function () {
 							$('#messageBar').text(res.msg).css({ 'background-color': '#00FF7F', 'color': 'black' });
 							docentry = res.docentry
 
+							setTimeout(function () {
+								$('#messageBar').text('').css({ 'background-color': '', 'color': '' });
+
+								 window.location.replace("../templates/" + mainFileName + "-document.php");
+							}, 4000)
 							
 						}
 						else {
+							$('#duplicateSINo').modal('show');	
 							$('#messageBar2').addClass('d-none');
 							$('#messageBar3').removeClass('d-none');
 							$('#messageBar').text(res.msg).css({ 'background-color': 'red', 'color': 'white' });
@@ -3149,34 +3177,6 @@ $(document).ready(function () {
 					}
 				});
 
-
-				
-
-
-
-				setTimeout(function () {
-					formData.append('objectType', 13);
-					formData.append('docentryAttachment', docentry);
-					formData.append('lineno', 0); 
-					console.log(docentry + '/DocEntry here')
-					console.log(formData)
-					$.ajax({
-						url: '../proc/views/vw_uploadFile.php',
-						type: 'post',
-						data: formData
-						 ,
-						contentType: false,
-						processData: false,
-						success: function (data) {
-							console.log(data)
-							setTimeout(function () {
-								$('#messageBar').text('').css({ 'background-color': '', 'color': '' });
-
-								window.location.replace("../templates/" + mainFileName + "-document.php");
-							}, 5000)
-						},
-					});
-				}, 2000)
 			}
 			else {
 				$('#messageBar').val('Out of bounds').css({ 'background-color': 'red', 'color': 'white' });
@@ -3357,6 +3357,24 @@ $(document).ready(function () {
 
 			if (err == 0) {
 
+				setTimeout(function () {
+					formData.append('objectType', 13);
+					formData.append('docentryAttachment', docentry);
+					formData.append('lineno', 0);
+
+					console.log(formData)
+					
+					$.ajax({
+						url: '../proc/views/vw_uploadFile.php',
+						type: 'post',
+						data: formData,
+						contentType: false,
+						processData: false,
+						success: function (data) {
+						},
+					});
+				}, 2000)
+
 				$('#loadModal').modal('show');
 				$.ajax({
 					type: 'POST',
@@ -3415,51 +3433,27 @@ $(document).ready(function () {
 							$('#messageBar').text(res.msg).css({ 'background-color': '#00FF7F', 'color': 'black' });
 							docentry = res.docentry
 
-						
+							setTimeout(function () {
+								$('#messageBar').text('').css({ 'background-color': '', 'color': '' });
+
+								 window.location.replace("../templates/" + mainFileName + "-document.php");
+							}, 4000)
+							
 						}
 						else {
+							$('#duplicateSINo').modal('show');	
 							$('#messageBar2').addClass('d-none');
 							$('#messageBar3').removeClass('d-none');
 							$('#messageBar').text(res.msg).css({ 'background-color': 'red', 'color': 'white' });
 
-							setTimeout(function () {
-								$('#messageBar').text('').css({ 'background-color': '', 'color': '' });
+							// setTimeout(function () {
+							// 	$('#messageBar').text('').css({ 'background-color': '', 'color': '' });
 
-							}, 5000)
+							// }, 5000)
 						}
-
 						$('#loadModal').modal('hide');
 					}
 				});
-
-				
-	
-				// })
-				// console.log(itArr)
-
-				setTimeout(function () {
-					formData.append('objectType', 13);
-					formData.append('docentryAttachment', docentry);
-					formData.append('lineno', 0);
-
-					console.log(formData)
-					
-					$.ajax({
-						url: '../proc/views/vw_uploadFile.php',
-						type: 'post',
-						data: formData,
-						contentType: false,
-						processData: false,
-						success: function (data) {
-
-							setTimeout(function () {
-								$('#messageBar').text('').css({ 'background-color': '', 'color': '' });
-
-								window.location.replace("../templates/" + mainFileName + "-document.php");
-							}, 3000)
-						},
-					});
-				}, 2000)
 			}
 			else {
 				$('#messageBar').val('Out of bounds').css({ 'background-color': 'red', 'color': 'white' });
@@ -4444,8 +4438,8 @@ $(document).ready(function () {
 				else {
 					$('#txtRemarks').val(`Copied from ${baseTableName} # ` + val.DocNum);
 
-					$('#txtPostingDate').val(val.DocDate).prop("disabled", true);
-					$('#txtPostingDate2').prop("disabled", true);
+					// $('#txtPostingDate').val(val.DocDate).prop("disabled", true);
+					// $('#txtPostingDate2').prop("disabled", true);
 				}
 
 

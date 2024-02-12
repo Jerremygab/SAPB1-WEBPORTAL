@@ -91,9 +91,26 @@ if ($err == 0)
 			$udfJson = json_decode(stripslashes($udfJson));
 				foreach ($udfJson as $key => $value) 
 				{
+					
+					if($value[1] == "U_InvoiceNo"){
+					$qrySINo = odbc_exec($MSSQL_CONN, "USE [".$MSSQL_DB."]; 
+					SELECT U_InvoiceNo FROM OINV WHERE U_InvoiceNo = '$value[0]' AND DocEntry != $txtDocEntry");
+					while (odbc_fetch_row($qrySINo)){
+						$arr[] = array(
+							"U_InvoiceNo" => odbc_result($qrySINo, 'U_InvoiceNo'),
+						);
+						
+					}
+
+						if(odbc_result($qrySINo, 'U_InvoiceNo') == ''){
+							$oRdr->UserFields->Fields[$value[1]]->Value = $value[0];
+						} else{
+							$dupSIno = 1;
+						}
+					} 
+					else {
 						$oRdr->UserFields->Fields[$value[1]]->Value = $value[0];
-					
-					
+					}
 				}
 			
 			
@@ -113,7 +130,7 @@ if ($err == 0)
 	}
 }
 
-if ($err == 0) 
+if ($err == 0 && $dupSIno == '') 
 {
 	// updateRefDocModal($MSSQL_CONN, $MSSQL_DB, $refDocToObj, $childTable21, $txtDocNum, $objectType);
 	$data = array("valid"=>true, 

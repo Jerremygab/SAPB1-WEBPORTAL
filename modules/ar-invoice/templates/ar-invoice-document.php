@@ -746,7 +746,31 @@
       </div>
     </div>
     <!-- Contact Person Modal -->
-	
+		<!-- Approve Modal-->
+		<div class="modal fade " id="duplicateSINo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="false" style="margin-top: 300px !important;">
+      <div class="modal-dialog modal-xl" role="document" style="width:100%">
+        <!--Content-->
+        <div class="modal-content-full-width modal-content">
+          <!--Header-->
+          <div class="modal-header"  style="background-color: #A8A8A8; border-bottom-width: thick; border-color: #f0ad4e; ">
+            <h4 class="modal-title w-100" id="myModalLabel" style="color:black; font-size:15px !important;">Approve</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <!--Body-->
+          <div class="modal-body">
+          <h6 class="modal-title w-100" id="myModalLabel" style="color:black">Error: SI Number already exists. Cannot proceed.</h6>
+          </div>
+          <!--Footer-->
+          <div class="modal-footer"  style="background-color: none !important;">
+			<button id="btnforapproverYes" type="button" class="btn" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        <!--/.Content-->
+      </div>
+    </div>
+  <!-- Approve Modal -->
 	<!-- Sales Employee Modal -->
     <div class="modal fade" id="salesEmpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
       <div class="modal-dialog modal-xl" role="document" style="width:100%">
