@@ -42,7 +42,7 @@ $serviceType  = $_POST['serviceType'];
 
 $json = $_POST['json'];
 $jsonWTax = $_POST['jsonWTax'];
-$jsonAttachment = $_POST['jsonAttachment'];
+// $jsonAttachment = $_POST['jsonAttachment'];
 $jsonDP =  $_POST['jsonDP'];
 $udfJson = $_POST['udfJson'];
 
@@ -142,7 +142,7 @@ if ($err == 0)
 						
 					}
 
-						if(odbc_result($qrySINo, 'U_InvoiceNo') == ''){
+						if(odbc_result($qrySINo, 'U_InvoiceNo') == '' || $arr[0] == ''){
 							$oRdr->UserFields->Fields[$value[1]]->Value = $value[0];
 						} else{
 							$dupSIno = 1;

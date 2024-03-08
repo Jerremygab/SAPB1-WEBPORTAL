@@ -1226,6 +1226,66 @@ $(document).ready(function () {
 		$('.selected-det').find('input.whsename').val(whseName);
 
 	});
+	$(document.body).on('dblclick', '#tblOcr1 tbody > tr', function () 
+	{
+		
+		var OcrCode1 = $(this).children('td.item-1').text();
+		var OcrName1 = $(this).children('td.item-2').text();
+		
+		$('#Ocr1Modal').modal('hide');
+	
+		$('.selected-det').find('input.ocrcode1').val(OcrCode1);
+		$('.selected-det').find('input.ocrname1').val(OcrName1);
+	   
+	});
+	$(document.body).on('dblclick', '#tblOcr2 tbody > tr', function () 
+	{
+		
+		var OcrCode2 = $(this).children('td.item-1').text();
+		var OcrName2 = $(this).children('td.item-2').text();
+		
+		$('#Ocr2Modal').modal('hide');
+	
+		$('.selected-det').find('input.ocrcode2').val(OcrCode2);
+		$('.selected-det').find('input.ocrname2').val(OcrName2);
+	   
+	});
+	$(document.body).on('dblclick', '#tblOcr3 tbody > tr', function () 
+	{
+		
+		var OcrCode3 = $(this).children('td.item-1').text();
+		var OcrName3 = $(this).children('td.item-2').text();
+		
+		$('#Ocr3Modal').modal('hide');
+	
+		$('.selected-det').find('input.ocrcode3').val(OcrCode3);
+		$('.selected-det').find('input.ocrname3').val(OcrName3);
+	   
+	});
+	$(document.body).on('dblclick', '#tblOcr4 tbody > tr', function () 
+	{
+		
+		var OcrCode4 = $(this).children('td.item-1').text();
+		var OcrName4 = $(this).children('td.item-2').text();
+		
+		$('#Ocr4Modal').modal('hide');
+	
+		$('.selected-det').find('input.ocrcode4').val(OcrCode4);
+		$('.selected-det').find('input.ocrname4').val(OcrName4);
+	   
+	});
+	$(document.body).on('dblclick', '#tblOcr5 tbody > tr', function () 
+	{
+		
+		var OcrCode5 = $(this).children('td.item-1').text();
+		var OcrName5 = $(this).children('td.item-2').text();
+		
+		$('#Ocr5Modal').modal('hide');
+	
+		$('.selected-det').find('input.ocrcode5').val(OcrCode5);
+		$('.selected-det').find('input.ocrname5').val(OcrName5);
+	   
+	});
 	let batchItemRowNo;
 	let batchItemCode;
 	let batchQuantity;
@@ -2817,6 +2877,34 @@ $(document).ready(function () {
 				$('#messageBar2').removeClass('d-none');
 			}, 5000)
 		}
+		
+		let formData = new FormData();
+		let docentry = '';
+		
+		formData.append('type', 'add');
+		formData.append('atcentry', '');
+		
+
+
+		formData.append('fileToUpload[]', $('#tblAttachment tbody tr:first input.file')[0].files[0]);
+		$('#tblAttachment tbody tr').each(function (i) {
+			x = $(this).children();
+
+			if ($(this).find('.file').val() != '') {
+				let file = $(this).find('.file')[0].files[0]
+				let attachmentdate = $(this).find('.attachmentdate').val()
+				let freetext = $(this).find('.freetext').val()
+
+				console.log(file);
+				console.log(freetext);
+				console.log($(this).find('.file').val());
+				
+				formData.append('fileToUpload[]', file);
+				formData.append('attachmentdate', attachmentdate);
+				formData.append('freetext', freetext);
+			}
+		});
+
 		if (err == 0) {
 			var udfJson = '{';
 			var udfArr = [];
@@ -2913,6 +3001,9 @@ $(document).ready(function () {
 						itArr.push('"' + $(this).find('input.itemname').val() + '"');
 						// WTAX NI GABZ
 						itArr.push('"' + $(this).find('select.selwt').val() + '"');
+						itArr.push('"' + $(this).find('input.ocrcode1').val() + '"');
+						itArr.push('"' + $(this).find('input.ocrcode2').val() + '"');
+						// itArr.push('"' + $(this).find('input.ocrcode3').val() + '"');
 
 						otArr.push('"' + i + '": [' + itArr.join(',') + ']');
 
@@ -2928,6 +3019,9 @@ $(document).ready(function () {
 						itArr.push('"' + $(this).find('select.taxcode').val() + '"');
 						// WTAX NI GABZ
 						itArr.push('"' + $(this).find('select.selwt').val() + '"');
+						itArr.push('"' + $(this).find('input.ocrcode1').val() + '"');
+						itArr.push('"' + $(this).find('input.ocrcode2').val() + '"');
+						// itArr.push('"' + $(this).find('input.ocrcode3').val() + '"');
 
 						otArr.push('"' + i + '": [' + itArr.join(',') + ']');
 					}
@@ -2971,39 +3065,39 @@ $(document).ready(function () {
 			console.log(jsonWTax)
 
 
-			var jsonAttachment = '{';
-			var otArrAttachment = [];
-			var tbl = $('#tblAttachment tbody tr').each(function (i) {
+			// var jsonAttachment = '{';
+			// var otArrAttachment = [];
+			// var tbl = $('#tblAttachment tbody tr').each(function (i) {
 
-				x = $(this).children();
-				var itArr = [];
-				if (serviceType == 'I') {
-					if ($(this).find('input.file').val() != '') {
-						itArr.push('"' + $(this).find('input.targetpath').val() + '"');
-						itArr.push('"' + $(this).find('input.file').val() + '"');
-						itArr.push('"' + $(this).find('input.attachmentdate').val().replace(/,/g, '') + '"')
-						itArr.push('"' + $(this).find('input.freetext').val().replace(/,/g, '') + '"')
+			// 	x = $(this).children();
+			// 	var itArr = [];
+			// 	if (serviceType == 'I') {
+			// 		if ($(this).find('input.file').val() != '') {
+			// 			itArr.push('"' + $(this).find('input.targetpath').val() + '"');
+			// 			itArr.push('"' + $(this).find('input.file').val() + '"');
+			// 			itArr.push('"' + $(this).find('input.attachmentdate').val().replace(/,/g, '') + '"')
+			// 			itArr.push('"' + $(this).find('input.freetext').val().replace(/,/g, '') + '"')
 
-						otArrAttachment.push('"' + i + '": [' + itArr.join(',') + ']');
-
-
-					}
-				}else{
-					if ($(this).find('input.file').val() != '') {
-					itArr.push('"' + $(this).find('input.targetpath').val() + '"');
-					itArr.push('"' + $(this).find('input.file').val() + '"');
-					itArr.push('"' + $(this).find('input.attachmentdate').val().replace(/,/g, '') + '"')
-					itArr.push('"' + $(this).find('input.freetext').val().replace(/,/g, '') + '"')
-
-					otArrAttachment.push('"' + i + '": [' + itArr.join(',') + ']');
+			// 			otArrAttachment.push('"' + i + '": [' + itArr.join(',') + ']');
 
 
-					}
-				}
-			});
+			// 		}
+			// 	}else{
+			// 		if ($(this).find('input.file').val() != '') {
+			// 		itArr.push('"' + $(this).find('input.targetpath').val() + '"');
+			// 		itArr.push('"' + $(this).find('input.file').val() + '"');
+			// 		itArr.push('"' + $(this).find('input.attachmentdate').val().replace(/,/g, '') + '"')
+			// 		itArr.push('"' + $(this).find('input.freetext').val().replace(/,/g, '') + '"')
 
-			jsonAttachment += otArrAttachment.join(",") + '}';
-			console.log(jsonAttachment);
+			// 		otArrAttachment.push('"' + i + '": [' + itArr.join(',') + ']');
+
+
+			// 		}
+			// 	}
+			// });
+
+			// jsonAttachment += otArrAttachment.join(",") + '}';
+			// console.log(jsonAttachment);
 
 			// DOWN PAYMENT NI GABZ 
 			var jsonDP = '{';
@@ -3033,63 +3127,8 @@ $(document).ready(function () {
 			console.log(jsonDP)
 			// ====================================== //
 
-			let formData = new FormData();
-			let docentry = '';
-			
-			formData.append('type', 'add');
-			formData.append('atcentry', '');
-			
-
-
-			formData.append('fileToUpload[]', $('#tblAttachment tbody tr:first input.file')[0].files[0]);
-			$('#tblAttachment tbody tr').each(function (i) {
-				x = $(this).children();
-
-				if ($(this).find('.file').val() != '') {
-					let file = $(this).find('.file')[0].files[0]
-					let attachmentdate = $(this).find('.attachmentdate').val()
-					let freetext = $(this).find('.freetext').val()
-
-					console.log(file);
-					console.log(freetext);
-					console.log($(this).find('.file').val());
-					
-					formData.append('fileToUpload[]', file);
-					formData.append('attachmentdate', attachmentdate);
-					formData.append('freetext', freetext);
-				}
-			});
-	
-
-			
-
 			if (err == 0) {
 				$('#loadModal').modal('show');
-				console.log(formData)
-
-				if(formData.getAll("file") != ''){
-					
-					setTimeout(function () {
-						formData.append('objectType', 13);
-						formData.append('docentryAttachment', docentry);
-						formData.append('lineno', 0); 
-
-						alert
-						$.ajax({
-							url: '../proc/views/vw_uploadFile.php',
-							type: 'post',
-							data: formData
-
-
-							,
-							contentType: false,
-							processData: false,
-							success: function (data) {
-								console.log(data)
-							},
-						});
-					}, 2000)
-				}
 
 				$.ajax({
 					type: 'POST',
@@ -3098,7 +3137,7 @@ $(document).ready(function () {
 					{
 						json: json.replace(/(\r\n|\n|\r)/gm, '[newline]'),
 						jsonWTax: jsonWTax.replace(/(\r\n|\n|\r)/gm, '[newline]'),
-						jsonAttachment: jsonAttachment.replace(/(\r\n|\n|\r)/gm, '[newline]'),
+						// jsonAttachment: jsonAttachment.replace(/(\r\n|\n|\r)/gm, '[newline]'),
 						jsonDP: jsonDP.replace(/(\r\n|\n|\r)/gm, '[newline]'),
 						udfJson: udfJson.replace(/(\r\n|\n|\r)/gm, '[newline]'),
 						selSeries: selSeries,
@@ -3149,6 +3188,8 @@ $(document).ready(function () {
 					success: function (data) {
 						var res = $.parseJSON(data);
 
+						// alert(res.dupsino)
+
 						if (res.valid == true) {
 							$('#messageBar2').addClass('d-none');
 							$('#messageBar3').removeClass('d-none');
@@ -3162,8 +3203,13 @@ $(document).ready(function () {
 							}, 4000)
 							
 						}
+						else if(res.valid == false && res.dupsino !== ''){
+							$('#duplicateSINo').modal('show');
+							$('#messageBar2').addClass('d-none');
+							$('#messageBar3').removeClass('d-none');
+						}
 						else {
-							$('#duplicateSINo').modal('show');	
+							// $('#duplicateSINo').modal('show');
 							$('#messageBar2').addClass('d-none');
 							$('#messageBar3').removeClass('d-none');
 							$('#messageBar').text(res.msg).css({ 'background-color': 'red', 'color': 'white' });
@@ -3176,6 +3222,23 @@ $(document).ready(function () {
 						$('#loadModal').modal('hide');
 					}
 				});
+				setTimeout(function () {
+					formData.append('objectType', 13);
+					formData.append('docentryAttachment', docentry);
+					formData.append('lineno', 0); 
+
+					
+					$.ajax({
+						url: '../proc/views/vw_uploadFile.php',
+						type: 'post',
+						data: formData,
+						contentType: false,
+						processData: false,
+						success: function (data) {
+							console.log(data)
+						},
+					});
+				}, 2000)
 
 			}
 			else {
@@ -3357,24 +3420,6 @@ $(document).ready(function () {
 
 			if (err == 0) {
 
-				setTimeout(function () {
-					formData.append('objectType', 13);
-					formData.append('docentryAttachment', docentry);
-					formData.append('lineno', 0);
-
-					console.log(formData)
-					
-					$.ajax({
-						url: '../proc/views/vw_uploadFile.php',
-						type: 'post',
-						data: formData,
-						contentType: false,
-						processData: false,
-						success: function (data) {
-						},
-					});
-				}, 2000)
-
 				$('#loadModal').modal('show');
 				$.ajax({
 					type: 'POST',
@@ -3454,6 +3499,24 @@ $(document).ready(function () {
 						$('#loadModal').modal('hide');
 					}
 				});
+				
+				setTimeout(function () {
+					formData.append('objectType', 13);
+					formData.append('docentryAttachment', docentry);
+					formData.append('lineno', 0);
+
+					console.log(formData)
+					
+					$.ajax({
+						url: '../proc/views/vw_uploadFile.php',
+						type: 'post',
+						data: formData,
+						contentType: false,
+						processData: false,
+						success: function (data) {
+						},
+					});
+				}, 2000)
 			}
 			else {
 				$('#messageBar').val('Out of bounds').css({ 'background-color': 'red', 'color': 'white' });

@@ -78,7 +78,7 @@ $txtDocumentSearch = $_GET['txtDocumentSearch'];
 																						ORDER BY T0.DocNum ASC");
 								while (odbc_fetch_row($qry)) 
 								{
-									echo '<tr class="">
+									echo utf8_encode('<tr class="">
 												<td>'.$itemno.'</td>
 												<td class="item-1">'.odbc_result($qry, 'DocNum').'</td>
 												<td class="item-2 d-none">'.odbc_result($qry, 'DocEntry').'</td>
@@ -88,7 +88,7 @@ $txtDocumentSearch = $_GET['txtDocumentSearch'];
 												<td class="item-8 " style="width: 160px;" >'.odbc_result($qry, 'Comments').'</td>
 												<td class="item-9 " >'.SAPDateFormater(odbc_result($qry, 'DocDueDate')).'</td>
 												<td class="item-5 text-right" >'.number_format(odbc_result($qry, 'DocTotal'),2).'</td>
-											  </tr>';
+											  </tr>');
 									$itemno++;	  
 								}
 								

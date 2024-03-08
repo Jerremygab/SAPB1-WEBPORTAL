@@ -321,7 +321,8 @@ $(document).ready(function () {
 			});
 				
 	});
-	let txtCurrency = 'PHP';	
+	let txtCurrency ='PHP';
+	// let txtCurrency = $('select.currency').val();
 	var fadeDelay = 1000;
 		var fadeDuration = 1000;
 		
@@ -747,7 +748,7 @@ $(document).ready(function () {
 			let paymentTermsName = $(this).children('td.item-6').text();
 			let tinNumber = $(this).children('td.item-7').text();
 			let contactPersonCode = $(this).children('td.item-8').text();
-			txtCurrency = $(this).children('td.item-9').text();
+			let txtCurrency = $(this).children('td.item-9').text();
 			let addressID = '';
 			let controlAccount = $(this).children('td.item-10').text();
 			let controlAccountName = $(this).children('td.item-11').text();
@@ -1211,6 +1212,66 @@ $(document).ready(function () {
 		
 			$('.selected-det').find('input.whsecode').val(whseCode);
 			$('.selected-det').find('input.whsename').val(whseName);
+		   
+		});
+		$(document.body).on('dblclick', '#tblOcr1 tbody > tr', function () 
+		{
+			
+			var OcrCode1 = $(this).children('td.item-1').text();
+			var OcrName1 = $(this).children('td.item-2').text();
+			
+			$('#Ocr1Modal').modal('hide');
+		
+			$('.selected-det').find('input.ocrcode1').val(OcrCode1);
+			$('.selected-det').find('input.ocrname1').val(OcrName1);
+		   
+		});
+		$(document.body).on('dblclick', '#tblOcr2 tbody > tr', function () 
+		{
+			
+			var OcrCode2 = $(this).children('td.item-1').text();
+			var OcrName2 = $(this).children('td.item-2').text();
+			
+			$('#Ocr2Modal').modal('hide');
+		
+			$('.selected-det').find('input.ocrcode2').val(OcrCode2);
+			$('.selected-det').find('input.ocrname2').val(OcrName2);
+		   
+		});
+		$(document.body).on('dblclick', '#tblOcr3 tbody > tr', function () 
+		{
+			
+			var OcrCode3 = $(this).children('td.item-1').text();
+			var OcrName3 = $(this).children('td.item-2').text();
+			
+			$('#Ocr3Modal').modal('hide');
+		
+			$('.selected-det').find('input.ocrcode3').val(OcrCode3);
+			$('.selected-det').find('input.ocrname3').val(OcrName3);
+		   
+		});
+		$(document.body).on('dblclick', '#tblOcr4 tbody > tr', function () 
+		{
+			
+			var OcrCode4 = $(this).children('td.item-1').text();
+			var OcrName4 = $(this).children('td.item-2').text();
+			
+			$('#Ocr4Modal').modal('hide');
+		
+			$('.selected-det').find('input.ocrcode4').val(OcrCode4);
+			$('.selected-det').find('input.ocrname4').val(OcrName4);
+		   
+		});
+		$(document.body).on('dblclick', '#tblOcr5 tbody > tr', function () 
+		{
+			
+			var OcrCode5 = $(this).children('td.item-1').text();
+			var OcrName5 = $(this).children('td.item-2').text();
+			
+			$('#Ocr5Modal').modal('hide');
+		
+			$('.selected-det').find('input.ocrcode5').val(OcrCode5);
+			$('.selected-det').find('input.ocrname5').val(OcrName5);
 		   
 		});
 		let batchItemRowNo;
@@ -2724,7 +2785,7 @@ $(document).ready(function () {
 	});
 	$('#journalEntryModal').on('shown.bs.modal',function(){
 		var docNum = $('#txtDocNum').val();
-		var currency = $('#txtCurrency').val();
+		var currency = $('select.currency').val();
 		var objType = 13;
 
 	
@@ -2815,7 +2876,9 @@ $(document).ready(function () {
 		});
 		//Add
 		$(document.body).on('click', '#btnAdd', function () 
+		
 		{
+			
 			CheckBatchSerial();
 			var err = 0;
 			var errmsg = '';
@@ -2888,6 +2951,7 @@ $(document).ready(function () {
 			});
 			udfJson += udfArr.join(",") + '}';
 		   
+			
 			var txtCardCode = $('#txtCardCode').val();
 			var txtPostingDate = $('#txtPostingDate').val();
 			var txtDeliveryDate = $('#txtDeliveryDate').val();
@@ -2929,8 +2993,8 @@ $(document).ready(function () {
 			var wtLiableCodeArr = $('input[name=txtWtLiableArray]').val();
 			var wtLiableRateArr = $('input[name=txtWtLiableArray2]').val();
 			var txtWtLiableAcctCode = $('input[name=txtWtLiableAcctCode]').val();
+			var txtCurrency = $('select.currency').val();
 			let txtDocTotal2 = $('#txtDocTotal2').val();
-	
 	
 			var json = '{';
 			var otArr = [];
@@ -2966,6 +3030,15 @@ $(document).ready(function () {
 						itArr.push('"' + $(this).find('input.batchorserial').val() + '"');
 						itArr.push('"' + $(this).find('input.itemname').val() + '"');
 						itArr.push('"' + $(this).find('select.selwt').val() + '"');
+						itArr.push('"' + $(this).find('input.ocrcode1').val() + '"');
+						itArr.push('"' + $(this).find('input.ocrcode2').val() + '"');
+						// itArr.push('"' + $(this).find('input.ocrcode3').val() + '"');
+						// itArr.push('"' + $(this).find('input.ocrcode4').val() + '"');
+						// itArr.push('"' + $(this).find('input.ocrcode5').val() + '"');
+
+						
+						
+						
 						
 					otArr.push('"' + i + '": [' + itArr.join(',') + ']'); 
 					
@@ -2980,6 +3053,11 @@ $(document).ready(function () {
 						itArr.push('"' + $(this).find('input.discount').val().replace(/,/g, '') + '"');
 						itArr.push('"' + $(this).find('select.taxcode').val() + '"');
 						itArr.push('"' + $(this).find('select.selwt').val().replace(/,/g, '') + '"');
+						itArr.push('"' + $(this).find('input.ocrcode1').val() + '"');
+						itArr.push('"' + $(this).find('input.ocrcode2').val() + '"');
+						// itArr.push('"' + $(this).find('input.ocrcode3').val() + '"');
+
+						
 					
 					otArr.push('"' + i + '": [' + itArr.join(',') + ']'); 
 					}
@@ -3135,6 +3213,8 @@ $(document).ready(function () {
 						txtRemarks : txtRemarks,
 						selShipToAddress : selShipToAddress,
 						selBillToAddress : selBillToAddress,
+
+						// txtCurrency : txtCurrency,
 						
 						txtJournalMemo : txtJournalMemo,
 						txtControlAccountCode : txtControlAccountCode,
@@ -5675,19 +5755,19 @@ $(document).ready(function () {
 		
 		
 		function FormatMoney(amount){
-			let preAmount = accounting.formatMoney(amount, "", 2);
+			let preAmount = accounting.formatMoney(amount, "", 6);
 			
 			
 			return preAmount;
 		} 
 		function FormatQuantity(amount){
-			let preAmount = accounting.formatMoney(amount, "", 2);
+			let preAmount = accounting.formatMoney(amount, "", 6);
 			
 			
 			return preAmount;
 		}
 		function FormatMoneyWithCurrency(amount){
-			let preAmount = accounting.formatMoney(amount, txtCurrency + " " , 2);
+			let preAmount = accounting.formatMoney(amount, txtCurrency + " " , 6);
 			
 			
 			return preAmount;

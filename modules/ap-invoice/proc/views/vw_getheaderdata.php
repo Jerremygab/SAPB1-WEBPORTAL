@@ -145,7 +145,7 @@ while (odbc_fetch_row($qry))
 				
 				
 				"CardCode" => odbc_result($qry, 'CardCode'),
-				"CardName" => odbc_result($qry, 'CardName'),
+				"CardName" => utf8_encode(odbc_result($qry, 'CardName')),
 				"LicTradNum" => odbc_result($qry, 'LicTradNum'),
 				
 				"VatSum" => number_format(odbc_result($qry, 'VatSum'),2),

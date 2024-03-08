@@ -47,7 +47,7 @@ $udfJson = $_POST['udfJson'];
 $refDocToObj = json_decode($_POST['refDocToObj']);
 $objectType = $_POST['objectType'];
 $childTable21 = $_POST['childTable21'];
-
+$dupSIno = '';
 
 if ($err == 0) 
 {
@@ -102,7 +102,7 @@ if ($err == 0)
 						
 					}
 
-						if(odbc_result($qrySINo, 'U_InvoiceNo') == ''){
+						if(odbc_result($qrySINo, 'U_InvoiceNo') == '' || $arr[0] == ''){
 							$oRdr->UserFields->Fields[$value[1]]->Value = $value[0];
 						} else{
 							$dupSIno = 1;
@@ -141,7 +141,11 @@ if ($err == 0 && $dupSIno == '')
 }
 else
 {
-	$data = array("valid"=>false, "msg"=>$errmsg);
+	$data = array(
+		"valid"=>false,
+		"msg" => $errmsg,
+		"dupsino" => $dupSIno 
+	);
 	echo json_encode($data);
 }
 

@@ -1,5 +1,5 @@
 <?php
-
+	header('Content-Type: text/html; charset=ISO-8859-1');
 	include '../../head.php' ;
 
 ?>
@@ -166,9 +166,20 @@
 								</select>
 							</div>
 						
-						<div class="col-sm-3" >
-							<input type="text" class="form-control " id="txtCurrency" placeholder="" style="color: black;" readonly>
-						</div>
+							<div class="input-group col-sm-3">
+								  <select type="text" class="form-control currency" id="txtCurrency" placeholder=""   readonly >
+								  	<?php
+										$qry = odbc_exec($MSSQL_CONN, "USE [".$MSSQL_DB."]; SELECT CurrCode FROM OCRN");
+											while (odbc_fetch_row($qry)) 
+											{
+												//echo odbc_result($qry, 'NextNumber');
+												echo '<option  class="currencyoptions" value="' . odbc_result($qry, "CurrCode") . '"  >' . odbc_result($qry, "CurrCode") . '</option>';
+											}
+											
+											odbc_free_result($qry);
+										?>
+								</select>
+							</div>
 							
 						</div>	
 						
@@ -1109,6 +1120,326 @@
       </div>
     </div>
     <!-- WHSE Modal -->
+	<!-- OCR1 Modal -->
+    <div class="modal fade" id="Ocr1Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+      <div class="modal-dialog modal-xl" role="document" style="width:100%">
+        <!--Content-->
+        <div class="modal-content-full-width modal-content">
+          <!--Header-->
+          <div class="modal-header"  style="background-color: #A8A8A8; border-bottom-width: thick; border-color: #f0ad4e;">
+            <h4 class="modal-title w-100" id="myModalLabel" style="color:black">List of Distribution Rules</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <!--Body-->
+          <div class="modal-body">
+           <table class="table table-striped table-bordered table-hover" id="tblOcr1" style="width:100%">
+						<thead>
+							<tr>
+								<th >#</th>
+								<th >Distribution Rule</th>
+								<th >Distribution Rule Name</th>
+							</tr>
+						</thead>
+						<tbody>
+						<?php
+							$itemno = 1;
+							$qry = odbc_exec($MSSQL_CONN, "USE [".$MSSQL_DB."]; SELECT 
+																					T1.OcrCode,
+																					T1.OcrName,
+																					T1.DimCode,
+																					T0.DimName,
+																					T0.DimActive,
+																					T0.DimDesc
+																					
+																					FROM ODIM T0
+																					INNER JOIN OOCR T1 ON T0.DimCode = T1.DimCode
+																					
+																					WHERE DimName = 'Dimension 1' AND DimActive = 'Y'");
+								while (odbc_fetch_row($qry)) 
+								{
+									
+									echo '<tr class="">
+												<td>'.$itemno.'</td>
+												<td class="item-1">'.odbc_result($qry, 'OcrCode').'</td>
+												<td class="item-2" >'.odbc_result($qry, 'OcrName').'</td>
+											  </tr>';
+									$itemno++;	  
+								}
+								
+								odbc_free_result($qry);
+							
+
+						?>
+						</tbody>
+					</table>
+          </div>
+          <!--Footer-->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        <!--/.Content-->
+      </div>
+    </div>
+    <!-- OCR1 Modal -->
+	<!-- OCR2 Modal -->
+    <div class="modal fade" id="Ocr2Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+      <div class="modal-dialog modal-xl" role="document" style="width:100%">
+        <!--Content-->
+        <div class="modal-content-full-width modal-content">
+          <!--Header-->
+          <div class="modal-header"  style="background-color: #A8A8A8; border-bottom-width: thick; border-color: #f0ad4e;">
+            <h4 class="modal-title w-100" id="myModalLabel" style="color:black">List of Distribution Rules</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <!--Body-->
+          <div class="modal-body">
+           <table class="table table-striped table-bordered table-hover" id="tblOcr2" style="width:100%">
+						<thead>
+							<tr>
+								<th >#</th>
+								<th >Distribution Rule</th>
+								<th >Distribution Rule Name</th>
+							</tr>
+						</thead>
+						<tbody>
+						<?php
+							$itemno = 1;
+							$qry = odbc_exec($MSSQL_CONN, "USE [".$MSSQL_DB."]; SELECT 
+																					T1.OcrCode,
+																					T1.OcrName,
+																					T1.DimCode,
+																					T0.DimName,
+																					T0.DimActive,
+																					T0.DimDesc
+																					
+																					FROM ODIM T0
+																					INNER JOIN OOCR T1 ON T0.DimCode = T1.DimCode
+																					
+																					WHERE DimName = 'Dimension 2' AND DimActive = 'Y'");
+								while (odbc_fetch_row($qry)) 
+								{
+									
+									echo '<tr class="">
+												<td>'.$itemno.'</td>
+												<td class="item-1">'.odbc_result($qry, 'OcrCode').'</td>
+												<td class="item-2" >'.odbc_result($qry, 'OcrName').'</td>
+											  </tr>';
+									$itemno++;	  
+								}
+								
+								odbc_free_result($qry);
+							
+
+						?>
+						</tbody>
+					</table>
+          </div>
+          <!--Footer-->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        <!--/.Content-->
+      </div>
+    </div>
+    <!-- OCR2 Modal -->
+	<!-- OCR3 Modal -->
+    <div class="modal fade" id="Ocr3Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+      <div class="modal-dialog modal-xl" role="document" style="width:100%">
+        <!--Content-->
+        <div class="modal-content-full-width modal-content">
+          <!--Header-->
+          <div class="modal-header"  style="background-color: #A8A8A8; border-bottom-width: thick; border-color: #f0ad4e;">
+            <h4 class="modal-title w-100" id="myModalLabel" style="color:black">List of Distribution Rules</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <!--Body-->
+          <div class="modal-body">
+           <table class="table table-striped table-bordered table-hover" id="tblOcr3" style="width:100%">
+						<thead>
+							<tr>
+								<th >#</th>
+								<th >Distribution Rule</th>
+								<th >Distribution Rule Name</th>
+							</tr>
+						</thead>
+						<tbody>
+						<?php
+							$itemno = 1;
+							$qry = odbc_exec($MSSQL_CONN, "USE [".$MSSQL_DB."]; SELECT 
+																					T1.OcrCode,
+																					T1.OcrName,
+																					T1.DimCode,
+																					T0.DimName,
+																					T0.DimActive,
+																					T0.DimDesc
+																					
+																					FROM ODIM T0
+																					INNER JOIN OOCR T1 ON T0.DimCode = T1.DimCode
+																					
+																					WHERE DimName = 'Dimension 3' AND DimActive = 'Y'");
+								while (odbc_fetch_row($qry)) 
+								{
+									
+									echo '<tr class="">
+												<td>'.$itemno.'</td>
+												<td class="item-1">'.odbc_result($qry, 'OcrCode').'</td>
+												<td class="item-2" >'.odbc_result($qry, 'OcrName').'</td>
+											  </tr>';
+									$itemno++;	  
+								}
+								
+								odbc_free_result($qry);
+							
+
+						?>
+						</tbody>
+					</table>
+          </div>
+          <!--Footer-->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        <!--/.Content-->
+      </div>
+    </div>
+    <!-- OCR3 Modal -->
+	<!-- OCR4 Modal -->
+    <div class="modal fade" id="Ocr4Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+      <div class="modal-dialog modal-xl" role="document" style="width:100%">
+        <!--Content-->
+        <div class="modal-content-full-width modal-content">
+          <!--Header-->
+          <div class="modal-header"  style="background-color: #A8A8A8; border-bottom-width: thick; border-color: #f0ad4e;">
+            <h4 class="modal-title w-100" id="myModalLabel" style="color:black">List of Distribution Rules</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <!--Body-->
+          <div class="modal-body">
+           <table class="table table-striped table-bordered table-hover" id="tblOcr4" style="width:100%">
+						<thead>
+							<tr>
+								<th >#</th>
+								<th >Distribution Rule</th>
+								<th >Distribution Rule Name</th>
+							</tr>
+						</thead>
+						<tbody>
+						<?php
+							$itemno = 1;
+							$qry = odbc_exec($MSSQL_CONN, "USE [".$MSSQL_DB."]; SELECT 
+																					T1.OcrCode,
+																					T1.OcrName,
+																					T1.DimCode,
+																					T0.DimName,
+																					T0.DimActive,
+																					T0.DimDesc
+																					
+																					FROM ODIM T0
+																					INNER JOIN OOCR T1 ON T0.DimCode = T1.DimCode
+																					
+																					WHERE DimName = 'Dimension 4' AND DimActive = 'Y'");
+								while (odbc_fetch_row($qry)) 
+								{
+									
+									echo '<tr class="">
+												<td>'.$itemno.'</td>
+												<td class="item-1">'.odbc_result($qry, 'OcrCode').'</td>
+												<td class="item-2" >'.odbc_result($qry, 'OcrName').'</td>
+											  </tr>';
+									$itemno++;	  
+								}
+								
+								odbc_free_result($qry);
+							
+
+						?>
+						</tbody>
+					</table>
+          </div>
+          <!--Footer-->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        <!--/.Content-->
+      </div>
+    </div>
+    <!-- OCR4 Modal -->
+	<!-- OCR5 Modal -->
+    <div class="modal fade" id="Ocr5Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+      <div class="modal-dialog modal-xl" role="document" style="width:100%">
+        <!--Content-->
+        <div class="modal-content-full-width modal-content">
+          <!--Header-->
+          <div class="modal-header"  style="background-color: #A8A8A8; border-bottom-width: thick; border-color: #f0ad4e;">
+            <h4 class="modal-title w-100" id="myModalLabel" style="color:black">List of Distribution Rules</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <!--Body-->
+          <div class="modal-body">
+           <table class="table table-striped table-bordered table-hover" id="tblOcr5" style="width:100%">
+						<thead>
+							<tr>
+								<th >#</th>
+								<th >Distribution Rule</th>
+								<th >Distribution Rule Name</th>
+							</tr>
+						</thead>
+						<tbody>
+						<?php
+							$itemno = 1;
+							$qry = odbc_exec($MSSQL_CONN, "USE [".$MSSQL_DB."]; SELECT 
+																					T1.OcrCode,
+																					T1.OcrName,
+																					T1.DimCode,
+																					T0.DimName,
+																					T0.DimActive,
+																					T0.DimDesc
+																					
+																					FROM ODIM T0
+																					INNER JOIN OOCR T1 ON T0.DimCode = T1.DimCode
+																					
+																					WHERE DimName = 'Dimension 5' AND DimActive = 'Y'");
+								while (odbc_fetch_row($qry)) 
+								{
+									
+									echo '<tr class="">
+												<td>'.$itemno.'</td>
+												<td class="item-1">'.odbc_result($qry, 'OcrCode').'</td>
+												<td class="item-2" >'.odbc_result($qry, 'OcrName').'</td>
+											  </tr>';
+									$itemno++;	  
+								}
+								
+								odbc_free_result($qry);
+							
+
+						?>
+						</tbody>
+					</table>
+          </div>
+          <!--Footer-->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        <!--/.Content-->
+      </div>
+    </div>
+    <!-- OCR5 Modal -->
 	
 	 <!-- GL Modal -->
     <div class="modal fade" id="glModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
@@ -2115,6 +2446,7 @@
 <script>$('#tblStatesB').dataTable({"bLengthChange": false,});</script>
 <script>$('#tblGL').dataTable({"bLengthChange": false,});</script>
 <script>$('#tblWhse').dataTable({"bLengthChange": false,});</script>
+<script>$('#tblOcr2').dataTable({"bLengthChange": false,});</script>
 <script>$('#tblControlAccount').dataTable({"bLengthChange": false,});</script>
 
 <?php

@@ -10,7 +10,7 @@ if ($serviceType == 'I'){
 <table id="tblDetails" class="table table-striped table-bordered table-sm detailsTable" cellspacing="0"  style="background-color: white; width: 100%;" cellspacing="0">
   <thead   style="border-bottom: 0 !important">
     <tr>
-		  <th class="text-right" style=" color: black">#</th>
+			<th class="text-right" style=" color: black">#</th>
 			<th style="color: black; min-width:300px; ">Item No.</th>
 			<th style="color: black; min-width:500px;" >Item Description</th>
 			<th style="color: black; min-width:200px;">UoM Code</th>
@@ -23,6 +23,24 @@ if ($serviceType == 'I'){
 			<th style="color: black; min-width:150px;">Gross Price</th>
 			<th style="color: black; min-width:180px;">Total</th>
 			<th style="color: black; min-width:180px;">Gross Total</th>
+			<?php
+				$qry = odbc_exec($MSSQL_CONN, "USE [".$MSSQL_DB."]; 
+				SELECT 
+
+				DimCode,
+				DimName,
+				DimActive,
+				DimDesc
+
+				FROM ODIM 
+				WHERE DimActive = 'Y'");
+				while (odbc_fetch_row($qry)) 
+				{
+					echo '<th style="color: black; min-width:180px;">'.odbc_result($qry, 'DimDesc').'</th>';
+				}
+				
+				odbc_free_result($qry);
+			?>
     </tr>
   </thead>
   <tbody class="">
@@ -40,7 +58,7 @@ if ($serviceType == 'I'){
 		  </ul>
 		
 	  </td>
-      <td >
+       <td >
 		<div class="input-group " >
 		<input type="text" class="form-control itemcode"  aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none; " readonly/>
 		
@@ -152,6 +170,52 @@ if ($serviceType == 'I'){
 	  <td>
 	  <input  type="text" class="form-control matrix-cell text-right grosstotal " aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none" readonly/>	
 	  </td>
+	  
+	  <td>
+		<div class="input-group ">
+		<input type="text" class="form-control matrix-cell ocrcode1" aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none;" readonly/>
+		  <button class="btn " type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; "  data-toggle="modal" data-target="#Ocr1Modal" data-backdrop="false">
+			<i class="fas fa-list-ul input-prefix" tabindex=0 style="color:blue " ></i>
+		  </button>
+		<input type="hidden" class="form-control matrix-cell ocrname1"  aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none"/>
+		</div>
+	  </td>
+	  <td>
+		<div class="input-group ">
+		<input type="text" class="form-control matrix-cell ocrcode2" aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none;" readonly/>
+		  <button class="btn " type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; "  data-toggle="modal" data-target="#Ocr2Modal" data-backdrop="false">
+			<i class="fas fa-list-ul input-prefix" tabindex=0 style="color:blue " ></i>
+		  </button>
+		<input type="hidden" class="form-control matrix-cell ocrname2"  aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none"/>
+		</div>
+	  </td>
+	  <!--<td>
+		<div class="input-group ">
+		<input type="text" class="form-control matrix-cell ocrcode3" aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none;" readonly/>
+		  <button class="btn " type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; "  data-toggle="modal" data-target="#Ocr3Modal" data-backdrop="false">
+			<i class="fas fa-list-ul input-prefix" tabindex=0 style="color:blue " ></i>
+		  </button>
+		<input type="hidden" class="form-control matrix-cell ocrname3"  aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none"/>
+		</div>
+	  </td>
+	   <td>
+		<div class="input-group ">
+		<input type="text" class="form-control matrix-cell ocrcode4" aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none;" readonly/>
+		  <button class="btn " type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; "  data-toggle="modal" data-target="#Ocr2Modal" data-backdrop="false">
+			<i class="fas fa-list-ul input-prefix" tabindex=0 style="color:blue " ></i>
+		  </button>
+		<input type="hidden" class="form-control matrix-cell ocrname4"  aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none"/>
+		</div>
+	  </td>
+	  <td>
+		<div class="input-group ">
+		<input type="text" class="form-control matrix-cell ocrcode5" aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none;" readonly/>
+		  <button class="btn " type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; "  data-toggle="modal" data-target="#Ocr2Modal" data-backdrop="false">
+			<i class="fas fa-list-ul input-prefix" tabindex=0 style="color:blue " ></i>
+		  </button>
+		<input type="hidden" class="form-control matrix-cell ocrname5"  aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none"/>
+		</div>
+	  </td> -->
 
       
     </tr>
@@ -194,6 +258,24 @@ else{
 			<th style="color: black; min-width:150px;">Gross Price</th>
 			<th style="color: black; min-width:180px;">Total</th>
 			<th style="color: black; min-width:180px;">Gross Total</th>
+			<?php
+				$qry = odbc_exec($MSSQL_CONN, "USE [".$MSSQL_DB."]; 
+				SELECT 
+
+				DimCode,
+				DimName,
+				DimActive,
+				DimDesc
+
+				FROM ODIM 
+				WHERE DimActive = 'Y'");
+				while (odbc_fetch_row($qry)) 
+				{
+					echo '<th style="color: black; min-width:180px;">'.odbc_result($qry, 'DimDesc').'</th>';
+				}
+				
+				odbc_free_result($qry);
+			?>
 	
     </tr>
   </thead>
@@ -278,6 +360,51 @@ else{
 	   <td >
 	   <input  type="text" class="form-control matrix-cell text-right grosstotal " aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none" readonly/>
 	  </td>
+	  <td>
+		<div class="input-group ">
+		<input type="text" class="form-control matrix-cell ocrcode1" aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none;" readonly/>
+		  <button class="btn " type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; "  data-toggle="modal" data-target="#Ocr1Modal" data-backdrop="false">
+			<i class="fas fa-list-ul input-prefix" tabindex=0 style="color:blue " ></i>
+		  </button>
+		<input type="hidden" class="form-control matrix-cell ocrname1"  aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none"/>
+		</div>
+	  </td>
+	  <td>
+		<div class="input-group ">
+		<input type="text" class="form-control matrix-cell ocrcode2" aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none;" readonly/>
+		  <button class="btn " type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; "  data-toggle="modal" data-target="#Ocr2Modal" data-backdrop="false">
+			<i class="fas fa-list-ul input-prefix" tabindex=0 style="color:blue " ></i>
+		  </button>
+		<input type="hidden" class="form-control matrix-cell ocrname2"  aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none"/>
+		</div>
+	  </td>
+	  <!-- <td>
+		<div class="input-group ">
+		<input type="text" class="form-control matrix-cell ocrcode3" aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none;" readonly/>
+		  <button class="btn " type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; "  data-toggle="modal" data-target="#Ocr3Modal" data-backdrop="false">
+			<i class="fas fa-list-ul input-prefix" tabindex=0 style="color:blue " ></i>
+		  </button>
+		<input type="hidden" class="form-control matrix-cell ocrname3"  aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none"/>
+		</div>
+	  </td>
+	   <td>
+		<div class="input-group ">
+		<input type="text" class="form-control matrix-cell ocrcode4" aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none;" readonly/>
+		  <button class="btn " type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; "  data-toggle="modal" data-target="#Ocr2Modal" data-backdrop="false">
+			<i class="fas fa-list-ul input-prefix" tabindex=0 style="color:blue " ></i>
+		  </button>
+		<input type="hidden" class="form-control matrix-cell ocrname4"  aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none"/>
+		</div>
+	  </td>
+	  <td>
+		<div class="input-group ">
+		<input type="text" class="form-control matrix-cell ocrcode5" aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none;" readonly/>
+		  <button class="btn " type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; "  data-toggle="modal" data-target="#Ocr2Modal" data-backdrop="false">
+			<i class="fas fa-list-ul input-prefix" tabindex=0 style="color:blue " ></i>
+		  </button>
+		<input type="hidden" class="form-control matrix-cell ocrname5"  aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none"/>
+		</div>
+	  </td> -->
 
       
     </tr>
@@ -296,7 +423,7 @@ else{
 	  <th style="color: black; min-width:150px;">Wtax Liable</th>
 	  <th style="color: black; min-width:150px;">Gross Price</th>
       <th style="color: black; min-width:180px;">Total</th>
-	   <th style="color: black; min-width:180px;">Gross Total</th>
+	<th style="color: black; min-width:180px;">Gross Total</th>
 	
     </tr>
 	  </tfoot>

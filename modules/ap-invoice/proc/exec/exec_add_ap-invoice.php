@@ -37,6 +37,7 @@ $txtCityB = $_POST['txtCityB'];
 $txtZipCodeB = $_POST['txtZipCodeB'];
 $txtCountryB = $_POST['txtCountryB'];
 $selShippingType = $_POST['selShippingType'];
+// $txtCurrency = $_POST['txtCurrency'];
 
 $serviceType  = $_POST['serviceType'];
 
@@ -93,6 +94,8 @@ if ($err == 0)
 		
 			$oRdr->DocumentsOwner  = $txtOwnerCode;
 			$oRdr->ControlAccount = $txtControlAccountCode;
+
+			// $oRdr->DocCurrency = $txtCurrency;
 			
 			//$oRdr->BPL_IDAssignedToInvoice  = 52;
 			
@@ -248,6 +251,20 @@ if ($err == 0)
 						$oRdr->Lines->DiscountPercent = $value[4];
 						$oRdr->Lines->VatGroup = $value[5];
 						$oRdr->Lines->WarehouseCode = $value[17];
+						if($value[22] != ''){
+							$oRdr->Lines->CostingCode = $value[22];
+						}
+						if($value[23] != ''){
+							$oRdr->Lines->CostingCode2 = $value[23];
+						}
+						// if($value[24] != ''){
+						// 	$oRdr->Lines->CostingCode3 = $value[24];
+						// }
+						
+						// $oRdr->Lines->CostingCode2 = $value[23];
+						// $oRdr->Lines->CostingCode3 = $value[24];
+						// $oRdr->Lines->CostingCode4 = $value[25];
+						// $oRdr->Lines->CostingCode5 = $value[26];
 						// WTAX NI GABZ
 						if($value[21] == '1'){
 						$oRdr->Lines->WTLiable = 1;
@@ -278,6 +295,18 @@ if ($err == 0)
 							$oRdr->Lines->WTLiable = 0;
 						}
 						// ================ //
+
+						if($value[7] != ''){
+							$oRdr->Lines->CostingCode = $value[7];
+						}
+						if($value[8] != ''){
+							$oRdr->Lines->CostingCode2 = $value[8];
+						}
+						// if($value[9] != ''){
+						// 	$oRdr->Lines->CostingCode3 = $value[9];
+						// }
+						
+
 						$oRdr->Lines->Add();
 					
 					}

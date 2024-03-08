@@ -27,27 +27,27 @@ $cardcode = $_GET['cardCode'];
 
 <?php
 $qry = odbc_exec($MSSQL_CONN, "USE [".$MSSQL_DB."];
-										SELECT DISTINCT
+							SELECT DISTINCT
 
-										T0.CardCode,
-										T0.DocNum,
-										T0.DocType,
+							T0.CardCode,
+							T0.DocNum,
+							T0.DocType,
 
-										T0.Comments,
+							T0.Comments,
 
-										T0.DpmAmnt,
-										T0.VatSum,
-										T0.DocTotal,
-										T0.DpmAmntSC,
-										T0.VatSumSy,
-										T0.DocTotalSy,
-										T0.DocDate
+							T0.DpmAmnt,
+							T0.VatSum,
+							T0.DocTotal,
+							T0.DpmAmntSC,
+							T0.VatSumSy,
+							T0.DocTotalSy,
+							T0.DocDate
 
 
-										FROM ODPO T0
-										INNER JOIN VPM2 T1 ON T1.DocEntry = T0.DocEntry
-										WHERE T0.CardCode = '$cardcode' AND T0.CANCELED = 'N' AND T1.InvType = 204
-										");
+							FROM ODPO T0
+							INNER JOIN VPM2 T1 ON T1.DocEntry = T0.DocEntry
+							WHERE T0.CardCode = '$cardcode' AND T0.CANCELED = 'N' AND T1.InvType = 204
+							");
 $ctr = 1;
 
 while (odbc_fetch_row($qry)) 

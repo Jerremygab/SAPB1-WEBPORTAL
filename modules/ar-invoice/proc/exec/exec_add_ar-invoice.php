@@ -42,7 +42,7 @@ $serviceType  = $_POST['serviceType'];
 
 $json = $_POST['json'];
 $jsonWTax = $_POST['jsonWTax'];
-$jsonAttachment = $_POST['jsonAttachment'];
+// $jsonAttachment = $_POST['jsonAttachment'];
 $jsonDP =  $_POST['jsonDP'];
 $udfJson = $_POST['udfJson'];
 
@@ -117,7 +117,6 @@ if ($err == 0)
 						);
 						
 					}
-
 						if(odbc_result($qrySINo, 'U_InvoiceNo') == ''){
 							$oRdr->UserFields->Fields[$value[1]]->Value = $value[0];
 						} else{
@@ -126,7 +125,6 @@ if ($err == 0)
 					} 
 					else {
 						$oRdr->UserFields->Fields[$value[1]]->Value = $value[0];
-						
 					}
 				}
 			
@@ -205,9 +203,6 @@ if ($err == 0)
 						
 			// 		}	
 			// 	}
-
-
-				
 			// }
 			// ===================================== //
 		
@@ -314,8 +309,15 @@ if ($err == 0)
 						}
 						
 						// WTAX NI GABZ
-
-
+						if($value[22] != ''){
+							$oRdr->Lines->CostingCode = $value[22];
+						}
+						if($value[23] != ''){
+							$oRdr->Lines->CostingCode2 = $value[23];
+						}
+						// if($value[24] != ''){
+						// 	$oRdr->Lines->CostingCode3 = $value[24];
+						// }
 						
 						$oRdr->Lines->Add();
 					
@@ -338,6 +340,17 @@ if ($err == 0)
 							$oRdr->Lines->WTLiable = 0;
 						}
 						// WTAX NI GABZ
+
+						if($value[7] != ''){
+							$oRdr->Lines->CostingCode = $value[7];
+						}
+						if($value[8] != ''){
+							$oRdr->Lines->CostingCode2 = $value[8];
+						}
+						// if($value[9] != ''){
+						// 	$oRdr->Lines->CostingCode3 = $value[9];
+						// }
+						
 						$oRdr->Lines->Add();
 					
 					}
@@ -346,15 +359,6 @@ if ($err == 0)
 				}
 			} 
 			
-						
-				
-
-			
-			
-						
-				
-
-
 						// $oRdr->Lines->ItemCode = '1000001505';
 						// $oRdr->Lines->Quantity = 1;
 						// $oRdr->Lines->UnitPrice = 491.07;
@@ -368,8 +372,6 @@ if ($err == 0)
 
 						// $oRdr->Lines->Add();
 
-						// //-------------------------------------------
-
 						// $oRdr->Lines->ItemCode = 'DISC';
 						// $oRdr->Lines->Quantity = 1;
 						// $oRdr->Lines->UnitPrice = -35.71;
@@ -381,11 +383,7 @@ if ($err == 0)
 						
 
 						// $oRdr->Lines->Add();
-					
-					
-					
 				
-		
 			$retval = $oRdr->Add();
 			if ($retval != 0) 
 			{
@@ -411,7 +409,11 @@ if ($err == 0 && $dupSIno == '')
 }
 else
 {
-	$data = array("valid"=>false, "msg"=>$errmsg);
+	$data = array(
+		"valid"=>false,
+		"msg" => $errmsg,
+		"dupsino" => $dupSIno 
+	);
 	echo json_encode($data);
 }
 

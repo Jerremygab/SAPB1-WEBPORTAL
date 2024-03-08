@@ -2832,6 +2832,34 @@ $(document).ready(function () {
 				$('#messageBar2').removeClass('d-none');
 			}, 5000)
 		}
+		
+		let formData = new FormData();
+		let docentry = '';
+		
+		formData.append('type', 'add');
+		formData.append('atcentry', '');
+		
+
+
+		formData.append('fileToUpload[]', $('#tblAttachment tbody tr:first input.file')[0].files[0]);
+		$('#tblAttachment tbody tr').each(function (i) {
+			x = $(this).children();
+
+			if ($(this).find('.file').val() != '') {
+				let file = $(this).find('.file')[0].files[0]
+				let attachmentdate = $(this).find('.attachmentdate').val()
+				let freetext = $(this).find('.freetext').val()
+
+				console.log(file);
+				console.log(freetext);
+				console.log($(this).find('.file').val());
+				
+				formData.append('fileToUpload[]', file);
+				formData.append('attachmentdate', attachmentdate);
+				formData.append('freetext', freetext);
+			}
+		});
+
 		if (err == 0) {
 			var udfJson = '{';
 			var udfArr = [];
@@ -2986,39 +3014,39 @@ $(document).ready(function () {
 			console.log(jsonWTax)
 
 
-			var jsonAttachment = '{';
-			var otArrAttachment = [];
-			var tbl = $('#tblAttachment tbody tr').each(function (i) {
+			// var jsonAttachment = '{';
+			// var otArrAttachment = [];
+			// var tbl = $('#tblAttachment tbody tr').each(function (i) {
 
-				x = $(this).children();
-				var itArr = [];
-				if (serviceType == 'I') {
-					if ($(this).find('input.file').val() != '') {
-						itArr.push('"' + $(this).find('input.targetpath').val() + '"');
-						itArr.push('"' + $(this).find('input.file').val() + '"');
-						itArr.push('"' + $(this).find('input.attachmentdate').val().replace(/,/g, '') + '"')
-						itArr.push('"' + $(this).find('input.freetext').val().replace(/,/g, '') + '"')
+			// 	x = $(this).children();
+			// 	var itArr = [];
+			// 	if (serviceType == 'I') {
+			// 		if ($(this).find('input.file').val() != '') {
+			// 			itArr.push('"' + $(this).find('input.targetpath').val() + '"');
+			// 			itArr.push('"' + $(this).find('input.file').val() + '"');
+			// 			itArr.push('"' + $(this).find('input.attachmentdate').val().replace(/,/g, '') + '"')
+			// 			itArr.push('"' + $(this).find('input.freetext').val().replace(/,/g, '') + '"')
 
-						otArrAttachment.push('"' + i + '": [' + itArr.join(',') + ']');
-
-
-					}
-				}else{
-					if ($(this).find('input.file').val() != '') {
-					itArr.push('"' + $(this).find('input.targetpath').val() + '"');
-					itArr.push('"' + $(this).find('input.file').val() + '"');
-					itArr.push('"' + $(this).find('input.attachmentdate').val().replace(/,/g, '') + '"')
-					itArr.push('"' + $(this).find('input.freetext').val().replace(/,/g, '') + '"')
-
-					otArrAttachment.push('"' + i + '": [' + itArr.join(',') + ']');
+			// 			otArrAttachment.push('"' + i + '": [' + itArr.join(',') + ']');
 
 
-					}
-				}
-			});
+			// 		}
+			// 	}else{
+			// 		if ($(this).find('input.file').val() != '') {
+			// 		itArr.push('"' + $(this).find('input.targetpath').val() + '"');
+			// 		itArr.push('"' + $(this).find('input.file').val() + '"');
+			// 		itArr.push('"' + $(this).find('input.attachmentdate').val().replace(/,/g, '') + '"')
+			// 		itArr.push('"' + $(this).find('input.freetext').val().replace(/,/g, '') + '"')
 
-			jsonAttachment += otArrAttachment.join(",") + '}';
-			console.log(jsonAttachment);
+			// 		otArrAttachment.push('"' + i + '": [' + itArr.join(',') + ']');
+
+
+			// 		}
+			// 	}
+			// });
+
+			// jsonAttachment += otArrAttachment.join(",") + '}';
+			// console.log(jsonAttachment);
 
 			var jsonDP = '{';
 			var otArrDP = [];
@@ -3045,80 +3073,13 @@ $(document).ready(function () {
 			
 			jsonDP += otArrDP.join(",") + '}';
 			console.log(jsonDP)
-			let formData = new FormData();
-			let docentry = '';
 			
-			formData.append('type', 'add');
-			formData.append('atcentry', '');
-			
-
-
-			formData.append('fileToUpload[]', $('#tblAttachment tbody tr:first input.file')[0].files[0]);
-			$('#tblAttachment tbody tr').each(function (i) {
-				x = $(this).children();
-				
-				let file = ''
-				let attachmentdate = ''
-				let freetext = ''
-				
-				if ($(this).find('.file').val() != '') {
-					let file = $(this).find('.file')[0].files[0]
-					let attachmentdate = $(this).find('.attachmentdate').val()
-					let freetext = $(this).find('.freetext').val()
-
-					console.log(file);
-					console.log(freetext);
-					console.log($(this).find('.file').val());
-					
-					// formData.append('fileToUpload[]', file);
-					// formData.append('attachmentdate', attachmentdate);
-					// formData.append('freetext', freetext);
-					
-					
-				}
-					formData.append('fileToUpload[]', file);
-					formData.append('attachmentdate', attachmentdate);
-					formData.append('freetext', freetext);
-				
-
-			});
 			
 			
 
 			if (err == 0) {
 				$('#loadModal').modal('show');
-				console.log(formData)
-
-				console.log('File 1: ' + formData.getAll("file"))
-				// if(formData.getAll("file") != ''){
-				// 	console.log('File 2: ' + formData.getAll("file"))
-				// }
-				if(formData.getAll("file") != ''){
-					
-					setTimeout(function () {
-						formData.append('objectType', 13);
-						formData.append('docentryAttachment', docentry);
-						formData.append('lineno', 0); 
-
-						alert
-						$.ajax({
-							url: '../proc/views/vw_uploadFile.php',
-							type: 'post',
-							data: formData
-
-
-							,
-							contentType: false,
-							processData: false,
-							success: function (data) {
-								console.log(data)
-							},
-						});
-					}, 2000)
-				}
 				
-
-
 				$.ajax({
 					type: 'POST',
 					url: '../proc/exec/exec_add_' + mainFileName + '.php',
@@ -3126,7 +3087,7 @@ $(document).ready(function () {
 					{
 						json: json.replace(/(\r\n|\n|\r)/gm, '[newline]'),
 						jsonWTax: jsonWTax.replace(/(\r\n|\n|\r)/gm, '[newline]'),
-						jsonAttachment: jsonAttachment.replace(/(\r\n|\n|\r)/gm, '[newline]'),
+						// jsonAttachment: jsonAttachment.replace(/(\r\n|\n|\r)/gm, '[newline]'),
 						jsonDP: jsonDP.replace(/(\r\n|\n|\r)/gm, '[newline]'),
 						udfJson: udfJson.replace(/(\r\n|\n|\r)/gm, '[newline]'),
 						selSeries: selSeries,
@@ -3204,6 +3165,26 @@ $(document).ready(function () {
 						$('#loadModal').modal('hide');
 					}
 				});
+
+				setTimeout(function () {
+					formData.append('objectType', 24);
+					formData.append('docentryAttachment', docentry);
+					formData.append('lineno', 0); 
+					console.log(docentry + '/DocEntry here')
+					console.log(formData)
+					$.ajax({
+						url: '../proc/views/vw_uploadFile.php',
+						type: 'post',
+						data: formData,
+						contentType: false,
+						processData: false,
+						success: function (data) {
+							console.log(data)
+							var res = $.parseJSON(data);
+						},
+					});
+				}, 2000)
+				
 			}
 			else {
 				$('#messageBar').val('Out of bounds').css({ 'background-color': 'red', 'color': 'white' });
@@ -3384,24 +3365,6 @@ $(document).ready(function () {
 
 			if (err == 0) {
 
-				setTimeout(function () {
-					formData.append('objectType', 13);
-					formData.append('docentryAttachment', docentry);
-					formData.append('lineno', 0);
-
-					console.log(formData)
-					
-					$.ajax({
-						url: '../proc/views/vw_uploadFile.php',
-						type: 'post',
-						data: formData,
-						contentType: false,
-						processData: false,
-						success: function (data) {
-						},
-					});
-				}, 2000)
-
 				$('#loadModal').modal('show');
 				$.ajax({
 					type: 'POST',
@@ -3482,6 +3445,25 @@ $(document).ready(function () {
 						$('#loadModal').modal('hide');
 					}
 				});
+
+				setTimeout(function () {
+					formData.append('objectType', 13);
+					formData.append('docentryAttachment', docentry);
+					formData.append('lineno', 0);
+
+					console.log(formData)
+					
+					$.ajax({
+						url: '../proc/views/vw_uploadFile.php',
+						type: 'post',
+						data: formData,
+						contentType: false,
+						processData: false,
+						success: function (data) {
+						},
+					});
+				}, 2000)
+				
 			}
 			else {
 				$('#messageBar').val('Out of bounds').css({ 'background-color': 'red', 'color': 'white' });
