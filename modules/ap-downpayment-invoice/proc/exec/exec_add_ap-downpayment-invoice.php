@@ -204,6 +204,12 @@ if ($err == 0)
 							else{
 							$oRdr->Lines->WTLiable = 0;
 						}
+						if($value[10] != ''){
+							$oRdr->Lines->CostingCode = $value[10];
+						}
+						if($value[11] != ''){
+							$oRdr->Lines->CostingCode2 = $value[11];
+						}
 	
 						$oRdr->Lines->Add();
 					}
@@ -223,6 +229,12 @@ if ($err == 0)
 							}
 							else{
 							$oRdr->Lines->WTLiable = 0;
+						}
+						if($value[8] != ''){
+							$oRdr->Lines->CostingCode = $value[8];
+						}
+						if($value[9] != ''){
+							$oRdr->Lines->CostingCode2 = $value[9];
 						}
 	
 				

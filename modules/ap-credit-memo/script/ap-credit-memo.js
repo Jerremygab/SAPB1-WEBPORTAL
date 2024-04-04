@@ -407,6 +407,54 @@ $(document).ready(function () {
 			PreviewDoc(docNum, objType);
 		   
 		});
+		$(document.body).on('dblclick', '#tblOcr1 tbody > tr', function () 
+		{
+			
+			var OcrCode1 = $(this).children('td.item-1').text();
+			var OcrName1 = $(this).children('td.item-2').text();
+			
+			$('#Ocr1Modal').modal('hide');
+		
+			$('.selected-det').find('input.ocrcode1').val(OcrCode1);
+			$('.selected-det').find('input.ocrname1').val(OcrName1);
+		   
+		});
+		$(document.body).on('dblclick', '#tblOcr2 tbody > tr', function () 
+		{
+			
+			var OcrCode2 = $(this).children('td.item-1').text();
+			var OcrName2 = $(this).children('td.item-2').text();
+			
+			$('#Ocr2Modal').modal('hide');
+		
+			$('.selected-det').find('input.ocrcode2').val(OcrCode2);
+			$('.selected-det').find('input.ocrname2').val(OcrName2);
+		   
+		});
+		$(document.body).on('dblclick', '#tblOcr3 tbody > tr', function () 
+		{
+			
+			var OcrCode3 = $(this).children('td.item-1').text();
+			var OcrName3 = $(this).children('td.item-2').text();
+			
+			$('#Ocr3Modal').modal('hide');
+		
+			$('.selected-det').find('input.ocrcode3').val(OcrCode3);
+			$('.selected-det').find('input.ocrname3').val(OcrName3);
+		   
+		});
+		$(document.body).on('dblclick', '#tblOcr4 tbody > tr', function () 
+		{
+			
+			var OcrCode4 = $(this).children('td.item-1').text();
+			var OcrName4 = $(this).children('td.item-2').text();
+			
+			$('#Ocr4Modal').modal('hide');
+		
+			$('.selected-det').find('input.ocrcode4').val(OcrCode4);
+			$('.selected-det').find('input.ocrname4').val(OcrName4);
+		   
+		});
 		$(document.body).on('dblclick', '#tblBP tbody > tr', function () 
 		{
 			
@@ -1371,6 +1419,8 @@ $(document).ready(function () {
 						
 						itArr.push('"' + $(this).find('input.baseentry').val() + '"');
 						itArr.push('"' + $(this).find('input.linenum').val() + '"');
+						itArr.push('"' + $(this).find('input.ocrcode1').val() + '"');
+						itArr.push('"' + $(this).find('input.ocrcode2').val() + '"');
 					otArr.push('"' + i + '": [' + itArr.join(',') + ']'); 
 					
 					}
@@ -1383,6 +1433,8 @@ $(document).ready(function () {
 						itArr.push('"' + $(this).find('input.quantity').val().replace(/,/g, '') + '"')
 						itArr.push('"' + $(this).find('input.discount').val().replace(/,/g, '') + '"');
 						itArr.push('"' + $(this).find('select.taxcode').val() + '"');
+						itArr.push('"' + $(this).find('input.ocrcode1').val() + '"');
+						itArr.push('"' + $(this).find('input.ocrcode2').val() + '"');
 					
 					otArr.push('"' + i + '": [' + itArr.join(',') + ']'); 
 					}

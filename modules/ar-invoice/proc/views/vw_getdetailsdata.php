@@ -356,9 +356,6 @@ while (odbc_fetch_row($qry))
 					   <td >
 						<input  type="text" class="form-control matrix-cell text-right ocrcode2 "  value="'.$OcrCode2.'" style="outline: none; border:none" readonly/>	
 					  </td>
-					   <td >
-						<input  type="text" class="form-control matrix-cell text-right ocrcode1 "  value="'.$OcrCode3.'" style="outline: none; border:none" readonly/>	
-					  </td>
 					</tr>'
 					;
 			
@@ -439,9 +436,6 @@ while (odbc_fetch_row($qry))
 					  </td>
 					   <td >
 						<input  type="text" class="form-control matrix-cell text-right ocrcode2 "  value="'.$OcrCode2.'" style="outline: none; border:none" readonly/>	
-					  </td>
-					   <td >
-						<input  type="text" class="form-control matrix-cell text-right ocrcode1 "  value="'.$OcrCode3.'" style="outline: none; border:none" readonly/>	
 					  </td>
 						</tr>';
 						

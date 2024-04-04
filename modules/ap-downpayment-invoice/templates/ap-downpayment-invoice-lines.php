@@ -8,8 +8,8 @@ if ($serviceType == 'I'){
 
 <div class="">
     <table id="tblDetails" class="table table-striped table-bordered table-sm detailsTable" cellspacing="0"
-        style="background-color: white; width= 100%" cellspacing="0">
-        <thead style="border-bottom: 0 !important">
+        style="background-color: white; width: 100%;" cellspacing="0">
+        <thead style="border-bottom: 0 !important;">
             <tr>
                 <th class="text-right" style=" color: black">#</th>
                 <th style="color: black; min-width:300px; ">Item No.</th>
@@ -23,6 +23,24 @@ if ($serviceType == 'I'){
                 <th style="color: black; min-width:150px;">Gross Price</th>
                 <th style="color: black; min-width:180px;">Total</th>
                 <th style="color: black; min-width:180px;">Gross Total</th>
+                <?php
+				$qry = odbc_exec($MSSQL_CONN, "USE [".$MSSQL_DB."]; 
+				SELECT 
+
+				DimCode,
+				DimName,
+				DimActive,
+				DimDesc
+
+				FROM ODIM 
+				WHERE DimActive = 'Y'");
+				while (odbc_fetch_row($qry)) 
+				{
+					echo '<th style="color: black; min-width:180px;">'.odbc_result($qry, 'DimDesc').'</th>';
+				}
+				
+				odbc_free_result($qry);
+			?>
 
             </tr>
         </thead>
@@ -147,6 +165,24 @@ if ($serviceType == 'I'){
                         aria-label="Recipient's username" aria-describedby="button-addon2"
                         style="outline: none; border:none" readonly />
                 </td>
+                <td>
+		<div class="input-group ">
+		<input type="text" class="form-control matrix-cell ocrcode1" aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none;" readonly/>
+		  <button class="btn " type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; "  data-toggle="modal" data-target="#Ocr1Modal" data-backdrop="false">
+			<i class="fas fa-list-ul input-prefix" tabindex=0 style="color:blue " ></i>
+		  </button>
+		<input type="hidden" class="form-control matrix-cell ocrname1"  aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none"/>
+		</div>
+	  </td>
+	  <td>
+		<div class="input-group ">
+		<input type="text" class="form-control matrix-cell ocrcode2" aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none;" readonly/>
+		  <button class="btn " type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; "  data-toggle="modal" data-target="#Ocr2Modal" data-backdrop="false">
+			<i class="fas fa-list-ul input-prefix" tabindex=0 style="color:blue " ></i>
+		  </button>
+		<input type="hidden" class="form-control matrix-cell ocrname2"  aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none"/>
+		</div>
+	  </td>
 
 
             </tr>
@@ -176,8 +212,8 @@ else{
 <div class="">
     <table id="tblDetails" class="table table-striped table-bordered table-sm detailsTable" cellspacing="0"
         style="background-color: white">
-        <thead style="z-index: 999;  background-color: lightgray;  !important" class="thead-fixed " style="">
-            <tr style="background-color: lightgray; z-index: 999; !important">
+        <thead style="z-index: 999;  background-color: lightgray !important;" class="thead-fixed ">
+            <tr style="background-color: lightgray; z-index: 999 !important;">
                 <th class="text-right" style="color: black">#</th>
                 <th style="color: black; min-width:400px;">Description</th>
                 <th style="color: black; min-width:300px;">G/L Account</th>
@@ -190,6 +226,24 @@ else{
                 <th style="color: black; min-width:150px;">Gross Price</th>
                 <th style="color: black; min-width:180px;">Total</th>
                 <th style="color: black; min-width:180px;">Gross Total</th>
+                <?php
+				$qry = odbc_exec($MSSQL_CONN, "USE [".$MSSQL_DB."]; 
+				SELECT 
+
+				DimCode,
+				DimName,
+				DimActive,
+				DimDesc
+
+				FROM ODIM 
+				WHERE DimActive = 'Y'");
+				while (odbc_fetch_row($qry)) 
+				{
+					echo '<th style="color: black; min-width:180px;">'.odbc_result($qry, 'DimDesc').'</th>';
+				}
+				
+				odbc_free_result($qry);
+                ?>
 
             </tr>
         </thead>
@@ -291,13 +345,30 @@ else{
                     <input type="text" class="form-control matrix-cell text-right grosstotal "
                         style="outline: none; border:none" readonly />
                 </td>
-
+                <td>
+		<div class="input-group ">
+		<input type="text" class="form-control matrix-cell ocrcode1" aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none;" readonly/>
+		  <button class="btn " type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; "  data-toggle="modal" data-target="#Ocr1Modal" data-backdrop="false">
+			<i class="fas fa-list-ul input-prefix" tabindex=0 style="color:blue " ></i>
+		  </button>
+		<input type="hidden" class="form-control matrix-cell ocrname1"  aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none"/>
+		</div>
+	  </td>
+	  <td>
+		<div class="input-group ">
+		<input type="text" class="form-control matrix-cell ocrcode2" aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none;" readonly/>
+		  <button class="btn " type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; "  data-toggle="modal" data-target="#Ocr2Modal" data-backdrop="false">
+			<i class="fas fa-list-ul input-prefix" tabindex=0 style="color:blue " ></i>
+		  </button>
+		<input type="hidden" class="form-control matrix-cell ocrname2"  aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none"/>
+		</div>
+	  </td>
 
             </tr>
 
         </tbody>
         <tfoot style="z-index: 999;  background-color: lightgray; " class="d-none">
-            <tr style="background-color: lightgray; z-index: 999; !important">
+            <tr style="background-color: lightgray; z-index: 999 !important;">
                 <th class="text-right" style="width:50px; color: black">#</th>
                 <th style="color: black; min-width:400px;">Description</th>
                 <th style="color: black; min-width:300px;">G/L Account</th>
