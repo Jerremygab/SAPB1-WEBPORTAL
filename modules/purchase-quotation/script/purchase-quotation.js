@@ -306,6 +306,30 @@ var serviceType = 'I';
 		PreviewDoc(docNum, objType);
        
     });
+	$(document.body).on('dblclick', '#tblOcr1 tbody > tr', function () 
+		{
+			
+			var OcrCode1 = $(this).children('td.item-1').text();
+			var OcrName1 = $(this).children('td.item-2').text();
+			
+			$('#Ocr1Modal').modal('hide');
+		
+			$('.selected-det').find('input.ocrcode1').val(OcrCode1);
+			$('.selected-det').find('input.ocrname1').val(OcrName1);
+		   
+		});
+		$(document.body).on('dblclick', '#tblOcr2 tbody > tr', function () 
+		{
+			
+			var OcrCode2 = $(this).children('td.item-1').text();
+			var OcrName2 = $(this).children('td.item-2').text();
+			
+			$('#Ocr2Modal').modal('hide');
+		
+			$('.selected-det').find('input.ocrcode2').val(OcrCode2);
+			$('.selected-det').find('input.ocrname2').val(OcrName2);
+		   
+		});
 	$(document.body).on('dblclick', '#tblPR tbody > tr', function () 
 	{
 		
@@ -552,7 +576,7 @@ var serviceType = 'I';
     });
 	$(document.body).on('dblclick', '#tblStatesS tbody > tr', function () 
 	{
-		alert(1)
+		
 		var code = $(this).children('td.item-1').text();
         var name = $(this).children('td.item-2').text();
 		
@@ -1050,7 +1074,26 @@ var serviceType = 'I';
 
 		
 	});
+	$(document.body).on('click', '#btnItemSearch', function () {
+
+		var txtItemSearch = $('#txtItemSearch').val();
+		// $('#loadModal').modal('show');
+		$.ajax({
+			type: 'GET',
+			url: '../proc/views/utilities/vw_itemsearch.php',
+			data:
+			{
+				txtItemSearch: txtItemSearch,
+				
+			},
+			success: function (data) {
+				$('#tblItem').html(data)
+
+				// $('#loadModal').modal('hide');
+			}
+		});
 	
+	});
 //Submit
 	//Add
 	$(document.body).on('click', '#btnAdd', function () 
@@ -1162,6 +1205,8 @@ var serviceType = 'I';
 					
 					itArr.push('"' + $(this).find('input.baseentry').val() + '"');
 					itArr.push('"' + $(this).find('input.linenum').val() + '"');
+					itArr.push('"' + $(this).find('input.ocrcode1').val() + '"');
+					itArr.push('"' + $(this).find('input.ocrcode2').val() + '"');
 				otArr.push('"' + i + '": [' + itArr.join(',') + ']'); 
 				
 				}
@@ -1174,6 +1219,8 @@ var serviceType = 'I';
 					itArr.push('"' + $(this).find('input.quantity').val().replace(/,/g, '') + '"')
 					itArr.push('"' + $(this).find('input.discount').val().replace(/,/g, '') + '"');
 					itArr.push('"' + $(this).find('select.taxcode').val() + '"');
+					itArr.push('"' + $(this).find('input.ocrcode1').val() + '"');
+					itArr.push('"' + $(this).find('input.ocrcode2').val() + '"');
 				
 				otArr.push('"' + i + '": [' + itArr.join(',') + ']'); 
 				}
@@ -1230,7 +1277,7 @@ var serviceType = 'I';
                 },
 			    success: function (data) 
 				{
-					alert(data);
+					// alert(data);
 					var res = $.parseJSON(data);
 					
 					

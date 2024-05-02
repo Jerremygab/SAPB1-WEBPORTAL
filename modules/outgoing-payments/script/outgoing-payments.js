@@ -3325,19 +3325,19 @@ $(document).ready(function () {
 		}
 		
 		function FormatMoney(amount){
-			let preAmount = accounting.formatMoney(amount, "", 2);
+			let preAmount = accounting.formatMoney(amount, "", 6);
 			
 			
 			return preAmount;
 		} 
 		function FormatQuantity(amount){
-			let preAmount = accounting.formatMoney(amount, "", 2);
+			let preAmount = accounting.formatMoney(amount, "", 6);
 			
 			
 			return preAmount;
 		}
 		function FormatMoneyWithCurrency(amount){
-			let preAmount = accounting.formatMoney(amount, txtCurrency + " " , 2);
+			let preAmount = accounting.formatMoney(amount, txtCurrency + " " , 6);
 			
 			
 			return preAmount;

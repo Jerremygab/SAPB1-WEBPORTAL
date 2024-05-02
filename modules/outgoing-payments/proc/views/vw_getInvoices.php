@@ -153,9 +153,9 @@ while (odbc_fetch_row($qry))
 	$CardCode = odbc_result($qry, 'CardCode');
 	$CardName = odbc_result($qry, 'CardName');
 	$NumAtCard = odbc_result($qry, 'NumAtCard');
-	$Balance = number_format(odbc_result($qry, 'Balance'),2);
-	$WTApplied = number_format(odbc_result($qry, 'WTApplied'),2);
-	$DocTotal = number_format(odbc_result($qry, 'DocTotal'),2);
+	$Balance = number_format(odbc_result($qry, 'Balance'),6);
+	$WTApplied = number_format(odbc_result($qry, 'WTApplied'),6);
+	$DocTotal = number_format(odbc_result($qry, 'DocTotal'),6);
 	$Comments = odbc_result($qry, 'Comments');
 
 	

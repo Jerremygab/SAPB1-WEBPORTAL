@@ -735,6 +735,24 @@ var serviceType = 'I';
 		}
 	
 	});
+	$(document.body).on('click', '#PurchasingReports', function () 
+	{
+		if($('#PurchasingReports > .checked-sub').hasClass('d-none')){
+			$('#PurchasingReports > .checked-sub').removeClass('d-none');
+			$(this).css('background-color','#ADD8E6');
+			PurchCheckBoxChecked();
+			
+		
+		}
+		
+		else{
+			$('#PurchasingReports > .checked-sub').addClass('d-none');
+			$('#PurchasingReports > .checked-sub').addClass('d-none');
+			$(this).css('background-color','white');
+			PurchCheckBoxChecked();
+		}
+	
+	});
 
 	//Banking Module
 	$(document.body).on('click', '#ORCT', function () 

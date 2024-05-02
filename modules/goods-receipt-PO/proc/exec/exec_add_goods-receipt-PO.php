@@ -216,8 +216,15 @@ if ($err == 0)
 						$oRdr->Lines->UoMEntry = valid_input($value[3]);
 						$oRdr->Lines->UnitPrice = $value[1]; 
 						$oRdr->Lines->DiscountPercent = $value[4];
-						$oRdr->Lines->VatGroup = $value[5];
+						$oRdr->Lines->VatGroup = $value[5];	
 						$oRdr->Lines->WarehouseCode = $value[17];
+
+						if($value[18] != ''){
+							$oRdr->Lines->CostingCode = $value[18];
+						}
+						if($value[19] != ''){
+							$oRdr->Lines->CostingCode2 = $value[19];
+						}	
 						
 						$oRdr->Lines->Add();
 					
@@ -232,6 +239,13 @@ if ($err == 0)
 						$oRdr->Lines->UnitPrice = $value[2]; 
 						$oRdr->Lines->DiscountPercent = $value[4];
 						$oRdr->Lines->VatGroup = $value[5];
+
+						if($value[6] != ''){
+							$oRdr->Lines->CostingCode = $value[6];
+						}
+						if($value[7] != ''){
+							$oRdr->Lines->CostingCode2 = $value[7];
+						}
 					
 					
 						$oRdr->Lines->Add();

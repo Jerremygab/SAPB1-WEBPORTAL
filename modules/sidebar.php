@@ -127,32 +127,32 @@ $GenSet = '';
 
         <li class="nav-item nav-li 
 		<?php
-		// if(!isset($_SESSION['SESS_SUPERUSER']) && empty($_SESSION['SESS_SUPERUSER'])) 
-		// 		{	
-		// 			$SuperUser = 'N'; 
-		// 		}
-		// 		else
-		// 		{
-		// 			if($_SESSION['SESS_SUPERUSER'] == 'Y'){
-		// 				if(!isset($_SESSION['SESS_USER_MAINMODULE']) && empty($_SESSION['SESS_USER_MAINMODULE'])) 
-		// 				{	
-		// 					$MainAccsLvl =  explode(', ', '');
-		// 				}
-		// 				else
-		// 				{
-		// 					$MainAccsLvl = explode(', ', $_SESSION['SESS_USER_MAINMODULE']);
-		// 				}
+		if(!isset($_SESSION['SESS_SUPERUSER']) && empty($_SESSION['SESS_SUPERUSER'])) 
+				{	
+					$SuperUser = 'N'; 
+				}
+				else
+				{
+					if($_SESSION['SESS_SUPERUSER'] == 'Y'){
+						if(!isset($_SESSION['SESS_USER_MAINMODULE']) && empty($_SESSION['SESS_USER_MAINMODULE'])) 
+						{	
+							$MainAccsLvl =  explode(', ', '');
+						}
+						else
+						{
+							$MainAccsLvl = explode(', ', $_SESSION['SESS_USER_MAINMODULE']);
+						}
 						
-		// 				if(in_array('GenSet', $MainAccsLvl)){
-		// 					echo '';
-		// 				} else { 
-		// 					echo 'd-none';
-		// 				}
-		// 			}
-		// 			else{
-		// 				echo 'd-none';
-		// 			}
-		// 		}
+						if(in_array('GenSet', $MainAccsLvl)){
+							echo '';
+						} else { 
+							echo 'd-none';
+						}
+					}
+					else{
+						echo 'd-none';
+					}
+				}
 				
 				
 				
@@ -296,25 +296,25 @@ $GenSet = '';
 									
 								
 									echo (in_array('OPRQ', $AccsLvl) ? '<a href="../../purchase-request/templates/purchase-request-document.php" class="collapse-item nav-collapse-a"><i class="far fa-window-maximize nav-collapse-i" ></i>Purchase Request</a>' : '');
-									echo (in_array('OPRQ', $AccsLvl) ? '<a href="../../purchase-quotation/templates/purchase-quotation-document.php" class="collapse-item nav-collapse-a"><i class="far fa-window-maximize nav-collapse-i" ></i>Purchase Quotation</a>' : '');
+									echo (in_array('OPQT', $AccsLvl) ? '<a href="../../purchase-quotation/templates/purchase-quotation-document.php" class="collapse-item nav-collapse-a"><i class="far fa-window-maximize nav-collapse-i" ></i>Purchase Quotation</a>' : '');
 									echo (in_array('OPOR', $AccsLvl) ? '<a href="../../purchase-order/templates/purchase-order-document.php" class="collapse-item nav-collapse-a"><i class="far fa-window-maximize nav-collapse-i" ></i>Purchase Order</a>' : '');
 									echo (in_array('OPDN', $AccsLvl) ? '<a href="../../goods-receipt-PO/templates/goods-receipt-PO-document.php" class="collapse-item nav-collapse-a"><i class="far fa-window-maximize nav-collapse-i" ></i>Goods Receipt PO</a>' : '');
 									echo (in_array('OPCH', $AccsLvl) ? '<a href="../../ap-invoice/templates/ap-invoice-document.php" class="collapse-item nav-collapse-a"><i class="far fa-window-maximize nav-collapse-i" ></i>AP Invoice</a>' : '');
-									echo (in_array('ODPO', $AccsLvl) || true ? '<a href="../../ap-downpayment-invoice/templates/ap-downpayment-invoice-document.php"  class="collapse-item nav-collapse-a"><i class="far fa-window-maximize nav-collapse-i" ></i>A/P Downpayment <br> <i class="col ml-2"></i>	Invoice </a>' : '');
-									echo (in_array('ORPC', $AccsLvl) || true ? '<a href="../../ap-credit-memo/templates/ap-credit-memo-document.php" class="collapse-item nav-collapse-a"><i class="far fa-window-maximize nav-collapse-i" ></i>A/P Credit Memo</a>' : '');
+									echo (in_array('OPDI', $AccsLvl) ? '<a href="../../ap-downpayment-invoice/templates/ap-downpayment-invoice-document.php"  class="collapse-item nav-collapse-a"><i class="far fa-window-maximize nav-collapse-i" ></i>A/P Downpayment <br> <i class="col ml-2"></i>	Invoice </a>' : '');
+									echo (in_array('OPCM', $AccsLvl) ? '<a href="../../ap-credit-memo/templates/ap-credit-memo-document.php" class="collapse-item nav-collapse-a"><i class="far fa-window-maximize nav-collapse-i" ></i>A/P Credit Memo</a>' : '');
 
-									echo (in_array('Purch', $MainAccsLvl) ? '
-							        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#purchasingReports" aria-expanded="true" aria-controls="collapsePages">
+									echo (in_array('PurchasingReports', $AccsLvl) ? '
+							        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#PurchasingReports" aria-expanded="true" aria-controls="collapsePages">
 							         <i class="fas fa-file nav-icon"></i>
 							          <span class="nav-module nav-module-span" >Purchasing Reports</span>
 							        </a>
-							        <div id="purchasingReports" class="collapse nav-collapse-parent" aria-labelledby="headingPages" data-parent="#purchasing">
+							        <div id="PurchasingReports" class="collapse nav-collapse-parent" aria-labelledby="headingPages" data-parent="#purchasing">
 							          <div class="bg-white py-2 collapse-inner  nav-collapse-child">
 															
 																<a href="#"  data-toggle="modal" data-target="#paymentVoucherParameterModal" data-backdrop="false" class="collapse-item nav-collapse-a"><i class="fas fa-file nav-collapse-i" ></i>Payment Voucher</a>
-																	<a href="#"  data-toggle="modal" data-target="#paymentVoucherParameterModal2" data-backdrop="false" class="collapse-item nav-collapse-a"><i class="fas fa-file nav-collapse-i" ></i>Payment Voucher V2</a>
-																		<a href="#"  data-toggle="modal" data-target="#paymentVoucherParameterModal3" data-backdrop="false" class="collapse-item nav-collapse-a"><i class="fas fa-file nav-collapse-i" ></i>Payment Voucher V3</a>
-																		<a href="#"  data-toggle="modal" data-target="#paymentVoucherParameterModal4" data-backdrop="false" class="collapse-item nav-collapse-a"><i class="fas fa-file nav-collapse-i" ></i>Payment Voucher V4</a>
+																<a href="#"  data-toggle="modal" data-target="#paymentVoucherParameterModal2" data-backdrop="false" class="collapse-item nav-collapse-a"><i class="fas fa-file nav-collapse-i" ></i>Payment Voucher V2</a>
+																<a href="#"  data-toggle="modal" data-target="#paymentVoucherParameterModal3" data-backdrop="false" class="collapse-item nav-collapse-a"><i class="fas fa-file nav-collapse-i" ></i>Payment Voucher V3</a>
+																<a href="#"  data-toggle="modal" data-target="#paymentVoucherParameterModal4" data-backdrop="false" class="collapse-item nav-collapse-a"><i class="fas fa-file nav-collapse-i" ></i>Payment Voucher V4</a>
 														
 															
 							          </div>

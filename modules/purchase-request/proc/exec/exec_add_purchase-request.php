@@ -16,6 +16,7 @@ $selDept  = $_POST['selDept'];
 $txtOwnerCode  = $_POST['txtOwnerCode'];
 $txtRemarks = $_POST['txtRemarks'];
 $txtRequiredDate = $_POST['txtRequiredDate'];
+$jsonAttachment = $_POST['jsonAttachment'];
 
 
 $serviceType  = $_POST['serviceType'];
@@ -136,6 +137,12 @@ if ($err == 0)
 						$oPrQ->Lines->VatGroup = $value[5];
 						$oPrQ->Lines->LineVendor = $value[6];
 						$oPrQ->Lines->RequiredDate = $value[7];
+						if($value[8] != ''){
+							$oPrQ->Lines->CostingCode = $value[8];
+						}
+						if($value[9] != ''){
+							$oPrQ->Lines->CostingCode2 = $value[9];
+						}
 					
 						$oPrQ->Lines->Add();
 					
@@ -154,7 +161,13 @@ if ($err == 0)
 						$oPrQ->Lines->VatGroup = $value[5];
 						$oPrQ->Lines->LineVendor = $value[6];
 						$oPrQ->Lines->RequiredDate = $value[7];
-					
+
+						if($value[8] != ''){
+							$oPrQ->Lines->CostingCode = $value[8];
+						}
+						if($value[9] != ''){
+							$oPrQ->Lines->CostingCode2 = $value[9];
+						}
 				
 						$oPrQ->Lines->Add();
 					

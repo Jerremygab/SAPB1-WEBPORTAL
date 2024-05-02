@@ -16,7 +16,7 @@ $selDept  = $_POST['selDept'];
 $txtOwnerCode  = $_POST['txtOwnerCode'];
 $txtRemarks = $_POST['txtRemarks'];
 $txtRequiredDate = $_POST['txtRequiredDate'];
-
+$jsonAttachment = $_POST['jsonAttachment'];
 
 $serviceType  = $_POST['serviceType'];
 

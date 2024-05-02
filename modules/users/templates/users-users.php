@@ -296,6 +296,46 @@ include_once('../../../config/config.php');
 									</div>
 								</div>	
 							</div>
+							<div class="row">
+								<div class="col-7" >
+									<label for="inputEmail3" class=" col-form-label " style="color: black;" >AP Invoice</label>
+								</div>
+								<div class="col-5" >
+									<div class="input-group mb-1 ">
+										<input  type="checkbox" id="OPCH" name="chkModule[]" class="PurchSubModule" style="width:30px ; height:30px"  value="OPCH">
+									</div>
+								</div>	
+							</div>
+							<div class="row">
+								<div class="col-7" >
+									<label for="inputEmail3" class=" col-form-label " style="color: black;" >AP Downpayment Invoice</label>
+								</div>
+								<div class="col-5" >
+									<div class="input-group mb-1 ">
+										<input  type="checkbox" id="OPDI" name="chkModule[]" class="PurchSubModule" style="width:30px ; height:30px"  value="OPDI">
+									</div>
+								</div>	
+							</div>
+							<div class="row">
+								<div class="col-7" >
+									<label for="inputEmail3" class=" col-form-label " style="color: black;" >AP Credit Memo</label>
+								</div>
+								<div class="col-5" >
+									<div class="input-group mb-1 ">
+										<input  type="checkbox" id="OPCM" name="chkModule[]" class="PurchSubModule" style="width:30px ; height:30px"  value="OPCM">
+									</div>
+								</div>	
+							</div>
+							<div class="row">
+								<div class="col-7" >
+									<label for="inputEmail3" class=" col-form-label " style="color: black;" >Purchasing Reports</label>
+								</div>
+								<div class="col-5" >
+									<div class="input-group mb-1 ">
+										<input  type="checkbox" id="PurchasingReports" name="chkModule[]" class="PurchSubModule" style="width:30px ; height:30px"  value="Purchase">
+									</div>
+								</div>	
+							</div>
 						</div>
 					</div>	
 				</div>

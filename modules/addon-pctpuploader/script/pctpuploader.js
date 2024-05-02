@@ -566,27 +566,34 @@ function validateRows(){
 	        complete: function (data) {
 	        	console.log(data)
 					
-
+					
 	        		setTimeout(function()
-							{
-									console.log(ctrPosted , ctrUploadedItem)
+					{
+					console.log(ctrPosted , ctrUploadedItem)
+		
+						console.log('finished')
+						$('#tblMain').dataTable().fnDestroy();
+						$('#btnUpload3').trigger('click')
+						$('#postingSAP').text('Posting...').addClass('d-none')
+						$('.sapposting').addClass('d-none')
+						$('#postedSAP').text('Posted!').removeClass('d-none')
+						$('.countloading').addClass('d-none')
+						$('.itemloading').addClass('d-none')
+						$('.podloading').addClass('d-none')
+						$('#btnPost').prop('disabled',true);	
+						return false;
 								
-												console.log('finished')
-												$('#tblMain').dataTable().fnDestroy();
-												$('#btnUpload3').trigger('click')
-												$('#postingSAP').text('Posting...').addClass('d-none')
-												$('.sapposting').addClass('d-none')
-												$('#postedSAP').text('Posted!').removeClass('d-none')
-												$('.countloading').addClass('d-none')
-												$('.itemloading').addClass('d-none')
-												$('.podloading').addClass('d-none')
-												$('#btnPost').prop('disabled',true);	
-												return false;
-												
-								
+					},1000)
+	        		setTimeout(function()
+					{
+						$.ajax({
+							type: 'POST',
+							url: '../proc/exec/exec_duplicate_deleter.php',
+							startTime: performance.now(),
 									
-							
-							},1000)
+							});
+								
+					},500)
 
 					}
      		});

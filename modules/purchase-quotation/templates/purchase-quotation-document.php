@@ -1064,80 +1064,50 @@ include '../../head.php' ;
         </div>
     </div>
     <!-- payment Terms Modal -->
-
-    <!-- Item Code Modal -->
-    <div class="modal fade" id="itemModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document" style="width:100%">
-            <!--Content-->
-            <div class="modal-content-full-width modal-content">
-                <!--Header-->
-                <div class="modal-header"
-                    style="background-color: #A8A8A8; border-bottom-width: thick; border-color: #f0ad4e;">
-                    <h4 class="modal-title w-100" id="myModalLabel" style="color:black">List of Items</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <!--Body-->
-                <div class="modal-body">
-                    <table class="table table-striped table-bordered table-hover" id="tblItem" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Item Code</th>
-                                <th>Item Name</th>
-                                <th>Foreign Name</th>
-                                <th>UoM Group</th>
-                                <th>Inventory UoM</th>
-                                <th class="d-none">Price</th>
-                                <th class="d-none">Vendor</th>
-                                <th class="d-none">UGP Entry</th>
-                                <th class="d-none">UGP Code</th>
-                                <th class="d-none">UGP Name</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
+<!-- OCR1 Modal -->
+<div class="modal fade" id="Ocr1Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+      <div class="modal-dialog modal-xl" role="document" style="width:100%">
+        <!--Content-->
+        <div class="modal-content-full-width modal-content">
+          <!--Header-->
+          <div class="modal-header"  style="background-color: #A8A8A8; border-bottom-width: thick; border-color: #f0ad4e;">
+            <h4 class="modal-title w-100" id="myModalLabel" style="color:black">List of Distribution Rules</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <!--Body-->
+          <div class="modal-body">
+           <table class="table table-striped table-bordered table-hover" id="tblOcr1" style="width:100%">
+						<thead>
+							<tr>
+								<th >#</th>
+								<th >Distribution Rule</th>
+								<th >Distribution Rule Name</th>
+							</tr>
+						</thead>
+						<tbody>
+						<?php
 							$itemno = 1;
-							$qry = odbc_exec($MSSQL_CONN, "USE [".$MSSQL_DB."]; SELECT DISTINCT
-																						T0.ItemCode, 
-																						T0.ItemName, 
-																						T0.FrgnName,
-																						T0.InvntryUom, 
-																						T0.CardCode, 
-																						T1.ItmsGrpNam,
-																						CASE WHEN T2.Price = 0 THEN '' END AS Price,
-																						T4.UomEntry,
-																						T4.UomCode,
-																						T4.UomName
-																						
-																						
-																							
-																						FROM OITM T0
-																						INNER JOIN OITB T1 ON T0.ItmsGrpCod = T1.ItmsGrpCod
-																						INNER JOIN ITM1 T2 ON T2.ItemCode = T0.ItemCode
-																						LEFT JOIN OPLN T3 ON T3.ListNum = T2.PriceList
-																						INNER JOIN OUOM T4 ON T4.UomEntry = T0.IUoMEntry
-																						
-																						WHERE T0.PrchseItem = 'Y' AND T0.FrozenFor = 'N'
-																						
-																						
-																						ORDER BY T0.ItemName ASC");
+							$qry = odbc_exec($MSSQL_CONN, "USE [".$MSSQL_DB."]; SELECT 
+																					T1.OcrCode,
+																					T1.OcrName,
+																					T1.DimCode,
+																					T0.DimName,
+																					T0.DimActive,
+																					T0.DimDesc
+																					
+																					FROM ODIM T0
+																					INNER JOIN OOCR T1 ON T0.DimCode = T1.DimCode
+																					
+																					WHERE DimName = 'Dimension 1' AND DimActive = 'Y'");
 								while (odbc_fetch_row($qry)) 
 								{
+									
 									echo '<tr class="">
 												<td>'.$itemno.'</td>
-												<td class="item-1">'.odbc_result($qry, 'ItemCode').'</td>
-												<td class="item-2" >'.odbc_result($qry, 'ItemName').'</td>
-												<td class="item-3 " >'.odbc_result($qry, 'FrgnName').'</td>
-												<td class="item-4 " >'.odbc_result($qry, 'ItmsGrpNam').'</td>
-												<td class="item-5 " >'.odbc_result($qry, 'InvntryUom').'</td>
-												<td class="item-6 hidden" >'.odbc_result($qry, 'Price').'</td>
-												<td class="item-7 hidden" >'.odbc_result($qry, 'CardCode').'</td>
-												<td class="item-8 hidden" >'.odbc_result($qry, 'UomEntry').'</td>
-												<td class="item-9 hidden" >'.odbc_result($qry, 'UomCode').'</td>
-												<td class="item-10 hidden" >'.odbc_result($qry, 'UomName').'</td>
+												<td class="item-1">'.odbc_result($qry, 'OcrCode').'</td>
+												<td class="item-2" >'.odbc_result($qry, 'OcrName').'</td>
 											  </tr>';
 									$itemno++;	  
 								}
@@ -1146,16 +1116,122 @@ include '../../head.php' ;
 							
 
 						?>
-                        </tbody>
-                    </table>
-                </div>
-                <!--Footer-->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-            <!--/.Content-->
+						</tbody>
+					</table>
+          </div>
+          <!--Footer-->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
         </div>
+        <!--/.Content-->
+      </div>
+    </div>
+    <!-- OCR1 Modal -->
+	<!-- OCR2 Modal -->
+    <div class="modal fade" id="Ocr2Modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+      <div class="modal-dialog modal-xl" role="document" style="width:100%">
+        <!--Content-->
+        <div class="modal-content-full-width modal-content">
+          <!--Header-->
+          <div class="modal-header"  style="background-color: #A8A8A8; border-bottom-width: thick; border-color: #f0ad4e;">
+            <h4 class="modal-title w-100" id="myModalLabel" style="color:black">List of Distribution Rules</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <!--Body-->
+          <div class="modal-body">
+           <table class="table table-striped table-bordered table-hover" id="tblOcr2" style="width:100%">
+						<thead>
+							<tr>
+								<th >#</th>
+								<th >Distribution Rule</th>
+								<th >Distribution Rule Name</th>
+							</tr>
+						</thead>
+						<tbody>
+						<?php
+							$itemno = 1;
+							$qry = odbc_exec($MSSQL_CONN, "USE [".$MSSQL_DB."]; SELECT 
+																					T1.OcrCode,
+																					T1.OcrName,
+																					T1.DimCode,
+																					T0.DimName,
+																					T0.DimActive,
+																					T0.DimDesc
+																					
+																					FROM ODIM T0
+																					INNER JOIN OOCR T1 ON T0.DimCode = T1.DimCode
+																					
+																					WHERE DimName = 'Dimension 2' AND DimActive = 'Y'");
+								while (odbc_fetch_row($qry)) 
+								{
+									
+									echo '<tr class="">
+												<td>'.$itemno.'</td>
+												<td class="item-1">'.odbc_result($qry, 'OcrCode').'</td>
+												<td class="item-2" >'.odbc_result($qry, 'OcrName').'</td>
+											  </tr>';
+									$itemno++;	  
+								}
+								
+								odbc_free_result($qry);
+							
+
+						?>
+						</tbody>
+					</table>
+          </div>
+          <!--Footer-->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        <!--/.Content-->
+      </div>
+    </div>
+    <!-- OCR2 Modal -->
+   <!-- Item Code Modal -->
+   <div class="modal fade" id="itemModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+      <div class="modal-dialog modal-xl" role="document" style="width:100%">
+        <!--Content-->
+        <div class="modal-content-full-width modal-content">
+          <!--Header-->
+          <div class="modal-header"  style="background-color: #A8A8A8; border-bottom-width: thick; border-color: #f0ad4e;">
+            <h4 class="modal-title w-100" id="myModalLabel" style="color:black">List of Items</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <!--Body-->
+          <div class="modal-body">
+		  	<div class="row mb-3">
+			  	<div class="col-sm-2" >
+					<label for="inputEmail3" class=" col-form-label " style="color: black;" >Search</label>
+				</div>
+				<div class="col-4">					
+					<div class="input-group mb-1">
+						<input type="text" id="txtItemSearch" class="form-control" placeholder="" style="border-bottom-left-radius:5px; border-top-left-radius:5px;">
+						<div class="input-group-append">
+							<button id="btnItemSearch" class="btn btnGroup" type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; "  >
+								<i class="fa fa-search" tabindex=0 style="color:blue "></i>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+           <table class="table table-striped table-bordered table-hover" id="tblItem" style="width:100%">
+						
+			</table>
+          </div>
+          <!--Footer-->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+        <!--/.Content-->
+      </div>
     </div>
     <!-- Item Code Modal -->
 
@@ -1889,7 +1965,8 @@ include '../../head.php' ;
         "bLengthChange": false,
     });
     </script>
-
+    <script>$('#tblOcr1').dataTable({"bLengthChange": false,});</script>
+    <script>$('#tblOcr2').dataTable({"bLengthChange": false,});</script>
 
     <?php
 	include '../../bottom.php' 

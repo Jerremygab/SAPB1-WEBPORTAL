@@ -495,6 +495,15 @@
 																			<i class="unchecked-sub d-none fas input-prefix"  style="color:blue "></i>
 																		</button>
 																	</div>
+																	<div class="row">
+																		<div class="col-7" >
+																			<label for="inputEmail3" class=" col-form-label " style="color: black;" >Purchasing Reports</label>
+																		</div>
+																		<button class="btn btn-sm btnGroup ml-1 purchsub subModule" type="button"  id="PurchasingReports" style="background-color: white ;width:30px  !important; height:30px !important "   >
+																			<i class="checked-sub d-none fas fa-check input-prefix"  style="color:blue "></i>
+																			<i class="unchecked-sub d-none fas input-prefix"  style="color:blue "></i>
+																		</button>
+																	</div>
 																	
 																	
 																</div>

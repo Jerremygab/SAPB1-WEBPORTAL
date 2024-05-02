@@ -177,6 +177,12 @@ if ($err == 0)
 							$oRdr->Lines->BaseLine = $value[7];
 							$oRdr->Lines->BaseType = 1470000113; 
 						}
+						if($value[8] != ''){
+							$oRdr->Lines->CostingCode = $value[8];
+						}
+						if($value[9] != ''){
+							$oRdr->Lines->CostingCode2 = $value[9];
+						}
 						$oRdr->Lines->Add();
 					
 					}
@@ -191,7 +197,12 @@ if ($err == 0)
 						$oRdr->Lines->DiscountPercent = $value[4];
 						$oRdr->Lines->VatGroup = $value[5];
 					
-				
+						if($value[6] != ''){
+							$oRdr->Lines->CostingCode = $value[6];
+						}
+						if($value[7] != ''){
+							$oRdr->Lines->CostingCode2 = $value[7];
+						}
 						$oRdr->Lines->Add();
 					
 					}

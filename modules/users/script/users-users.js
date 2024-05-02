@@ -385,6 +385,7 @@ var serviceType = 'I';
 			$('#OPCH').prop('checked', true);
 			$('#OPDI').prop('checked', true);
 			$('#OPCM').prop('checked', true);
+			$('#PurchasingReports').prop('checked', true);
 		}
 		else{
 			
@@ -394,6 +395,7 @@ var serviceType = 'I';
 			$('#OPCH').prop('checked', false);
 			$('#OPDI').prop('checked', false);
 			$('#OPCM').prop('checked', false);
+			$('#PurchasingReports').prop('checked', false);
 		}
 	});
 	//Sub Modules

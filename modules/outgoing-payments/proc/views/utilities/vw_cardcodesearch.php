@@ -57,7 +57,7 @@ $txtCardCodeSearch = $_GET['txtCardCodeSearch'];
 												<td>'.$itemno.'</td>
 												<td class="item-1">'.odbc_result($qry, 'CardCode').'</td>
 												<td class="item-2">'.odbc_result($qry, 'CardName').'</td>
-												<td class="item-3 text-right">'.number_format(odbc_result($qry, 'Balance'),2).'</td>
+												<td class="item-3 text-right">'.number_format(odbc_result($qry, 'Balance'),6).'</td>
 												<td class="item-4">'.odbc_result($qry, 'CntctPrsn').'</td>
 												<td class="item-5 d-none">'.odbc_result($qry, 'GroupNum').'</td>
 												<td class="item-6 d-none">'.odbc_result($qry, 'PymntGroup').'</td>

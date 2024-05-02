@@ -51,6 +51,7 @@ $qry = odbc_exec($MSSQL_CONN, "USE [".$MSSQL_DB."];
 		T1.ItemCode,
 		T1.Dscription,
 		T1.AcctCode,
+
 		
 		T1.Quantity,
 		T1.PriceAfVat,
@@ -72,6 +73,12 @@ $qry = odbc_exec($MSSQL_CONN, "USE [".$MSSQL_DB."];
 		T1.GTotal,
 		T1.LineNum,
 		T1.VisOrder,
+		T1.OcrCode,
+		T1.OcrCode2,
+		T1.OcrCode3,
+		T1.OcrCode4,
+		T1.OcrCode5,
+		
 		
 		T1.WhsCode,
 		T5.WhsName,
@@ -119,6 +126,12 @@ while (odbc_fetch_row($qry))
 	$TrgetEntry = odbc_result($qry, "TrgetEntry");
 	$LineStatus = odbc_result($qry, "LineStatus");
 	$BaseType = odbc_result($qry, "BaseType");
+	
+	$OcrCode1 = odbc_result($qry, "OcrCode"); 
+	$OcrCode2 = odbc_result($qry, "OcrCode2"); 
+	$OcrCode3 = odbc_result($qry, "OcrCode3"); 
+	$OcrCode4 = odbc_result($qry, "OcrCode4"); 
+	$OcrCode5 = odbc_result($qry, "OcrCode5"); 
 	
 	$VisOrder = odbc_result($qry, "VisOrder");
 	$ItemCode = odbc_result($qry, "ItemCode");
@@ -312,6 +325,12 @@ while (odbc_fetch_row($qry))
 					   <td >
 						<input  type="text" class="form-control matrix-cell text-right grosstotal "  value="'.$GrossTotal.'" style="outline: none; border:none" readonly/>	
 					  </td>
+					  <td >
+					  <input  type="text" class="form-control matrix-cell text-right ocrcode1 "  value="'.$OcrCode1.'" style="outline: none; border:none" readonly/>	
+					</td>
+					 <td >
+					  <input  type="text" class="form-control matrix-cell text-right ocrcode2 "  value="'.$OcrCode2.'" style="outline: none; border:none" readonly/>	
+					</td>
 					</tr>'
 					;
 			
@@ -384,6 +403,12 @@ while (odbc_fetch_row($qry))
 						   <td >
 							<input  type="text" class="form-control matrix-cell text-right grosstotal "   value="'.$GrossTotal2.'" style="outline: none; border:none" readonly/>	
 						  </td>
+						  <td >
+						  <input  type="text" class="form-control matrix-cell text-right ocrcode1 "  value="'.$OcrCode1.'" style="outline: none; border:none" readonly/>	
+						</td>
+						 <td >
+						  <input  type="text" class="form-control matrix-cell text-right ocrcode2 "  value="'.$OcrCode2.'" style="outline: none; border:none" readonly/>	
+						</td>
 						</tr>';
 						
 						$ctr += 1;
@@ -485,6 +510,12 @@ while (odbc_fetch_row($qry))
 					   <td >
 						<input  type="text" class="form-control matrix-cell text-right grosstotal "   style="outline: none; border:none" readonly/>	
 					  </td>
+					  <td >
+					  <input  type="text" class="form-control matrix-cell text-right ocrcode1 " style="outline: none; border:none" readonly/>	
+					</td>
+					 <td >
+					  <input  type="text" class="form-control matrix-cell text-right ocrcode2 "   style="outline: none; border:none" readonly/>	
+					</td>
 					</tr>'
 					;
 			
@@ -552,6 +583,12 @@ while (odbc_fetch_row($qry))
 						   <td >
 							<input  type="text" class="form-control matrix-cell text-right grosstotal "    style="outline: none; border:none" readonly/>	
 						  </td>
+						  <td >
+						  <input  type="text" class="form-control matrix-cell text-right ocrcode1 "  style="outline: none; border:none" readonly/>	
+						</td>
+						 <td >
+						  <input  type="text" class="form-control matrix-cell text-right ocrcode2 " style="outline: none; border:none" readonly/>	
+						</td>
 						</tr>';
 						
 						$ctr += 1;

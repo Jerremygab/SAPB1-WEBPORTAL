@@ -15,7 +15,7 @@ $qry = odbc_exec($MSSQL_CONN, "USE [".$MSSQL_DB."];
 				
 				CASE 
 					WHEN T0.DocStatus = 'O' THEN 'Open' 
-					WHEN T0.DocStatus = 'C' AND T0.Canceled = 'C' THEN 'Canceled' 
+					WHEN T0.DocStatus = 'C' AND T0.Canceled = 'Y' THEN 'Canceled' 
 					WHEN T0.DocStatus = 'C' AND T0.Canceled = 'N' THEN 'Closed' 
 				END AS 'DocStatusFullText',
 				T0.CardCode,
@@ -74,6 +74,7 @@ while (odbc_fetch_row($qry))
 {
 	$arr[] = array(
 				"DocNum" => odbc_result($qry, 'DocNum'),
+				"DocEntry" => odbc_result($qry, 'DocEntry'),
 				"DocStatus" => odbc_result($qry, 'DocStatus'),
 				"DocStatusFullText" => odbc_result($qry, 'DocStatusFullText'),
 				"Series" => odbc_result($qry, 'Series'),
