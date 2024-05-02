@@ -47,7 +47,7 @@ $txtDocumentSearch = $_GET['txtDocumentSearch'];
 												<td class="item-6 " >'.odbc_result($qry, 'CardName').'</td>
 												<td class="item-8 " >'.odbc_result($qry, 'Comments').'</td>
 												<td class="item-9 " >'.date("m/d/Y", strtotime(odbc_result($qry, 'DocDueDate'))).'</td>
-												<td class="item-5 text-right" >'.number_format(odbc_result($qry, 'DocTotal'),2).'</td>
+												<td class="item-5 text-right" >'.number_format(odbc_result($qry, 'DocTotal'),6).'</td>
 											  </tr>';
 									$itemno++;	  
 								}

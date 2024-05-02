@@ -344,7 +344,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group row  py-0 my-0">
+                                            <div class="form-group row  py-0 my-0 d-none">
                                                 <label class="col-sm-3 col-form-label "
                                                     style="color: black;">Owner</label>
                                                 <div class="col-sm-9 ">

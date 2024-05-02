@@ -62,7 +62,7 @@ while (odbc_fetch_row($qry))
 	$DocNum = odbc_result($qry, 'DocNum');
 	$DocEntry = odbc_result($qry, 'DocEntry');
 	$DueDate = date('Y-m-d' ,strtotime(odbc_result($qry, 'DueDate')));
-	$CheckSum = number_format(odbc_result($qry, 'CheckSum'),2);
+	$CheckSum = number_format(odbc_result($qry, 'CheckSum'),6);
 	$BankCode = odbc_result($qry, 'BankCode');
 	$Branch = odbc_result($qry, 'Branch');
 	$AcctNum = odbc_result($qry, 'AcctNum');

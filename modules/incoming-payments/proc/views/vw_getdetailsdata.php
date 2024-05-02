@@ -6,6 +6,7 @@ $docNum = $_GET['docNum'];
 $docType = $_GET['docType'];
 $objType = $_GET['objType'];
 $payNoDoc = $_GET['payNoDoc'];
+// $cardCode = $_GET['cardCode'];
 $table = '';
 $table2 = '';
 
@@ -81,7 +82,7 @@ if($docType == 'C'){
     LEFT JOIN RCT2 T2 ON T0.DocEntry = T2.DocEntry
 
     LEFT JOIN ORCT T3 ON T3.DocEntry = T2.DocNum
-    WHERE T3.DocEntry = $docNum
+    WHERE T3.DocEntry = $docNum 
 
     UNION ALL
 
@@ -120,7 +121,7 @@ if($docType == 'C'){
 
     LEFT JOIN RCT2 T2 ON T0.DocEntry = T2.DocEntry
     LEFT JOIN ORCT T3 ON T3.DocEntry = T2.DocNum
-    WHERE T3.DocEntry = $docNum
+    WHERE T3.DocEntry = $docNum 
 
 
     ORDER BY T0.DocNum");
@@ -138,10 +139,10 @@ while (odbc_fetch_row($qry))
 	$CardCode = odbc_result($qry, 'CardCode');
 	$CardName = odbc_result($qry, 'CardName');
 	$NumAtCard = odbc_result($qry, 'NumAtCard');
-	$Balance = number_format(odbc_result($qry, 'Balance'),2);
-	$WTApplied = number_format(odbc_result($qry, 'WTApplied'),2);
-	$DocTotal = number_format(odbc_result($qry, 'DocTotal'),2);
-	$SumApplied = number_format(odbc_result($qry, 'SumApplied'),2);
+	$Balance = number_format(odbc_result($qry, 'Balance'),6);
+	$WTApplied = number_format(odbc_result($qry, 'WTApplied'),6);
+	$DocTotal = number_format(odbc_result($qry, 'DocTotal'),6);
+	$SumApplied = number_format(odbc_result($qry, 'SumApplied'),6);
 
 	$OcrCode = odbc_result($qry, 'OcrCode');
 	$OcrCode2 = odbc_result($qry, 'OcrCode2');
@@ -299,9 +300,9 @@ while (odbc_fetch_row($qry))
 	$Descrip = odbc_result($qry, 'Descrip');
 	$VatGroup = odbc_result($qry, 'VatGroup');
 
-	$SumApplied = number_format(odbc_result($qry, 'SumApplied'),2);
-	$VatAmnt = number_format(odbc_result($qry, 'VatAmnt'),2);
-	$GrossAmnt = number_format(odbc_result($qry, 'GrossAmnt'),2);
+	$SumApplied = number_format(odbc_result($qry, 'SumApplied'),6);
+	$VatAmnt = number_format(odbc_result($qry, 'VatAmnt'),6);
+	$GrossAmnt = number_format(odbc_result($qry, 'GrossAmnt'),6);
 
 	$OcrCode = odbc_result($qry, 'OcrCode');
 	$OcrCode2 = odbc_result($qry, 'OcrCode2');

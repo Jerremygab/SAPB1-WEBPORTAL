@@ -191,13 +191,24 @@ $(document).ready(function () {
 	});
 	$(document.body).on('click', '.chkboxInvoice', function () 
 	{
-			if($(this).prop('checked') == true){
-				let payment = $(this).closest('tr').find('input.balancedue2').val()
-				$(this).closest('tr').find('input.totalpayment').val(payment)
+		if($(this).prop('checked') == true){
+			let payment = $(this).closest('tr').find('input.balancedue2').val()
+			$(this).closest('tr').find('input.totalpayment').val(payment)
+			if ($(this).closest('tr').hasClass('selected-det')) 
+			{
+				$(this).closest('tr').find('input').css("background-color", "#F0AD4E");
+				$(this).closest('tr').find('span').css("background-color", "#F0AD4E");
+				$(this).closest('tr').find('td').css("background-color", "#F0AD4E");
+			}else {
+				$(this).closest('tr').find('input').css("background-color", "none");
 			}
-			else{
-				$(this).closest('tr').find('input.totalpayment').val(0.00)
-			} 
+		}
+		else{
+			$(this).closest('tr').find('input.totalpayment').val(0.00)
+			$(this).closest('tr').find('input').css("background-color", "");
+			$(this).closest('tr').find('span').css("background-color", "");
+			$(this).closest('tr').find('td').css("background-color", "");
+		} 
 	
 		
 			let value = $(this).val();
@@ -1581,17 +1592,17 @@ $(document).ready(function () {
 										$('#messageBar2').removeClass('d-none');
 									},5000)
 				}
-				else if ($('#txtOwnerCode').val() == '') {
-					err = 1;
-					$('#messageBar2').addClass('d-none');
-					$('#messageBar3').removeClass('d-none');
-					$('#messageBar').text('Please select owner!').css({ 'background-color': 'red', 'color': 'white' });
+				// else if ($('#txtOwnerCode').val() == '') {
+				// 	err = 1;
+				// 	$('#messageBar2').addClass('d-none');
+				// 	$('#messageBar3').removeClass('d-none');
+				// 	$('#messageBar').text('Please select owner!').css({ 'background-color': 'red', 'color': 'white' });
 		
-					setTimeout(function () {
-						$('#messageBar').text('').css({ 'background-color': '', 'color': '' });
-						$('#messageBar2').removeClass('d-none');
-					}, 5000)
-				}
+				// 	setTimeout(function () {
+				// 		$('#messageBar').text('').css({ 'background-color': '', 'color': '' });
+				// 		$('#messageBar2').removeClass('d-none');
+				// 	}, 5000)
+				// }
 			}
 			else{
 					if($('#tblDetails tbody tr').find('input.glaccount').val() == '' ){
@@ -1654,7 +1665,7 @@ $(document).ready(function () {
 			let txtSeriesOVPM = $('#txtSeriesOVPM').val();
 			let txtBPLId = $('#txtBPLId').val();
 			let txtCardCode = $('#txtCardCode').val();
-			var txtOwnerCode = $('#txtOwnerCode').val();
+			// var txtOwnerCode = $('#txtOwnerCode').val();
 			let txtCashGLCode = $('#txtCashGLCode').val();
 			let txtCashAmount = $('#txtCashAmount').val();
 			let txtTotalAmount = $('#txtTotalAmount').val();
@@ -1774,7 +1785,7 @@ $(document).ready(function () {
 						udfJson: udfJson.replace(/(\r\n|\n|\r)/gm, '[newline]'),
 						txtSeriesOVPM : txtSeriesOVPM,
 						txtBPLId : txtBPLId,
-						txtOwnerCode: txtOwnerCode,
+						//txtOwnerCode: txtOwnerCode,
 						txtCardCode : txtCardCode,
 						txtCashGLCode : txtCashGLCode,
 						txtCashAmount : txtCashAmount,
@@ -1907,17 +1918,18 @@ $(document).ready(function () {
 									$('#messageBar').text('').css({'background-color': '', 'color': ''});	
 									$('#messageBar2').removeClass('d-none');
 								},5000)
-			}else if ($('#txtOwnerCode').val() == '') {
-				err = 1;
-				$('#messageBar2').addClass('d-none');
-				$('#messageBar3').removeClass('d-none');
-				$('#messageBar').text('Please select owner!').css({ 'background-color': 'red', 'color': 'white' });
-	
-				setTimeout(function () {
-					$('#messageBar').text('').css({ 'background-color': '', 'color': '' });
-					$('#messageBar2').removeClass('d-none');
-				}, 5000)
 			}
+			// else if ($('#txtOwnerCode').val() == '') {
+			// 	err = 1;
+			// 	$('#messageBar2').addClass('d-none');
+			// 	$('#messageBar3').removeClass('d-none');
+			// 	$('#messageBar').text('Please select owner!').css({ 'background-color': 'red', 'color': 'white' });
+	
+			// 	setTimeout(function () {
+			// 		$('#messageBar').text('').css({ 'background-color': '', 'color': '' });
+			// 		$('#messageBar2').removeClass('d-none');
+			// 	}, 5000)
+			// }
 			if(err == 0){
 			var udfJson = '{';
 			var udfArr = [];
@@ -1934,7 +1946,7 @@ $(document).ready(function () {
 		   
 			let txtDocEntry = $('#txtDocEntry').val();
 			let txtDocNum = $('#txtDocNum').val();
-			var txtOwnerCode = $('#txtOwnerCode').val();
+			// var txtOwnerCode = $('#txtOwnerCode').val();
 			let txtAtcEntry = $('#txtAtcEntry').val();
 			let txtRemarks = $('#txtRemarks').val();
 			let txtJournalMemo = $('#txtJournalMemo').val();
@@ -2651,6 +2663,7 @@ $(document).ready(function () {
 			let docstatus = '';
 			let docType ='';
 			let payNoDoc ='';
+			// let cardCode = '';
 			if(objType == 24){
 				$('#btnAdd').addClass('d-none');
 				$('#btnOk').addClass('d-none');
@@ -2665,16 +2678,18 @@ $(document).ready(function () {
 			}
 			console.log(docNum)
 			console.log(objType)
+			console.log(payNoDoc)
+			// console.log(cardCode)
 			
 			$.getJSON('../proc/views/vw_getheaderdata.php?docNum=' + docNum + '&objType=' + objType, function (data){
 				
 					
 				$.each(data, function (key, val){
 					
-				
 					docstatus = val.DocStatusFullText;
 					docType = val.DocType;
 					payNoDoc = val.PayNoDoc;
+					// cardCode = val.CardCode;
 					$('#txtDocTotal').addClass('d-none');
 					$('#txtDocTotal2').removeClass('d-none');
 					$('#txtTotalBeforeDiscount').addClass('d-none');
@@ -2682,7 +2697,7 @@ $(document).ready(function () {
 					$('#txtTotalBeforeDiscount2').val(val.NetTotal);
 					$('#txtDocTotal2').val(val.DocTotal);
 					$('#txtOpenBalance').val(val.OpenBal);
-					$('#txtOwnerCode').val(val.EmpID);
+					//$('#txtOwnerCode').val(val.EmpID);
 					$('#txtOwnerName').val(val.EmployeeName);
 					
 					if(objType == 24){
@@ -2831,9 +2846,8 @@ $(document).ready(function () {
 				setTimeout(function () 
 				{
 						console.log(docType)
-						PreviewRows(docNum, docType , objType, payNoDoc,function () 
+						PreviewRows(docNum, docType , objType, payNoDoc, function () 
 						{
-							
 						});
 						PreviewRowsAttachments(docNum, docType, objType, function () {
 
@@ -2895,7 +2909,8 @@ $(document).ready(function () {
 			
 		}
 	
-		function PreviewRows(docNum, docType, objType, payNoDoc,callback){
+		function PreviewRows(docNum, docType, objType, payNoDoc, callback){
+			
 			$('#contents-tab').load('../proc/views/vw_getdetailsdata.php?docNum=' + docNum + '&docType=' + docType + '&objType=' + objType + '&payNoDoc=' + payNoDoc, function (result) 
 			{
 			// $('#contents-tab').append(result)
@@ -2904,6 +2919,16 @@ $(document).ready(function () {
 			
 					
 		}
+		// function PreviewRows(docNum, docType, objType, payNoDoc, cardCode, callback){
+			
+		// 	$('#contents-tab').load('../proc/views/vw_getdetailsdata.php?docNum=' + docNum + '&docType=' + docType + '&objType=' + objType + '&payNoDoc=' + payNoDoc + '&cardCode=' + cardCode, function (result) 
+		// 	{
+		// 	// $('#contents-tab').append(result)
+		// 	callback();
+		// 	});
+			
+					
+		// }
 		function PreviewRowsAttachments(docNum, docType, objType, callback) {
 			$('#tblAttachment tbody').load('../proc/views/vw_getdetailsdataattachments.php?docNum=' + docNum + '&docType=' + docType + '&objType=' + objType, function (result) {
 				
@@ -3345,19 +3370,19 @@ $(document).ready(function () {
 		}
 		
 		function FormatMoney(amount){
-			let preAmount = accounting.formatMoney(amount, "", 2);
+			let preAmount = accounting.formatMoney(amount, "", 6);
 			
 			
 			return preAmount;
 		} 
 		function FormatQuantity(amount){
-			let preAmount = accounting.formatMoney(amount, "", 2);
+			let preAmount = accounting.formatMoney(amount, "", 6);
 			
 			
 			return preAmount;
 		}
 		function FormatMoneyWithCurrency(amount){
-			let preAmount = accounting.formatMoney(amount, txtCurrency + " " , 2);
+			let preAmount = accounting.formatMoney(amount, txtCurrency + " " , 6);
 			
 			
 			return preAmount;
@@ -3378,7 +3403,7 @@ $(document).ready(function () {
 				&& (charCode < 48 || charCode > 57))
 			  return false;
 	
-			return true;
+			return true;2
 		}
 		
 	});
