@@ -188,7 +188,7 @@ if ($serviceType == 'I'){
 		<input type="hidden" class="form-control matrix-cell ocrname2"  aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none"/>
 		</div>
 	  </td>
-	  <!--<td>
+	  <!-- <td>
 		<div class="input-group ">
 		<input type="text" class="form-control matrix-cell ocrcode3" aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none;" readonly/>
 		  <button class="btn " type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; "  data-toggle="modal" data-target="#Ocr3Modal" data-backdrop="false">
@@ -196,8 +196,8 @@ if ($serviceType == 'I'){
 		  </button>
 		<input type="hidden" class="form-control matrix-cell ocrname3"  aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none"/>
 		</div>
-	  </td>
-	   <td>
+	  </td> -->
+	   <!--<td>
 		<div class="input-group ">
 		<input type="text" class="form-control matrix-cell ocrcode4" aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none;" readonly/>
 		  <button class="btn " type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; "  data-toggle="modal" data-target="#Ocr2Modal" data-backdrop="false">
@@ -377,7 +377,7 @@ else{
 		<input type="hidden" class="form-control matrix-cell ocrname2"  aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none"/>
 		</div>
 	  </td>
-	  <!-- <td>
+	   <!-- <td>
 		<div class="input-group ">
 		<input type="text" class="form-control matrix-cell ocrcode3" aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none;" readonly/>
 		  <button class="btn " type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; "  data-toggle="modal" data-target="#Ocr3Modal" data-backdrop="false">
@@ -385,8 +385,8 @@ else{
 		  </button>
 		<input type="hidden" class="form-control matrix-cell ocrname3"  aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none"/>
 		</div>
-	  </td>
-	   <td>
+	  </td> -->
+	   <!--<td>
 		<div class="input-group ">
 		<input type="text" class="form-control matrix-cell ocrcode4" aria-label="Recipient's username" aria-describedby="button-addon2" style="outline: none; border:none;" readonly/>
 		  <button class="btn " type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; "  data-toggle="modal" data-target="#Ocr2Modal" data-backdrop="false">

@@ -130,7 +130,7 @@ $(document).ready(function () {
 		});
 	$(document.body).on('click', '#btnFirstRecord', function (){
 		let table = objecTable;
-		let docNum = '';t
+		let docNum = '';
 		let objType = objectType;
 		$.getJSON('../proc/views/vw_getFirstEntry.php?table=' + table, function (data){
 			docNum = data;

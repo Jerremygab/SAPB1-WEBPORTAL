@@ -94,7 +94,7 @@ if ($err == 0)
 					
 					if($value[1] == "U_InvoiceNo"){
 					$qrySINo = odbc_exec($MSSQL_CONN, "USE [".$MSSQL_DB."]; 
-					SELECT U_InvoiceNo FROM OINV WHERE U_InvoiceNo = '$value[0]' AND DocEntry != $txtDocEntry");
+					SELECT U_InvoiceNo FROM OINV WHERE U_InvoiceNo = '$value[0]' AND DocEntry != $txtDocEntry AND Canceled = 'N'");
 					while (odbc_fetch_row($qrySINo)){
 						$arr[] = array(
 							"U_InvoiceNo" => odbc_result($qrySINo, 'U_InvoiceNo'),
