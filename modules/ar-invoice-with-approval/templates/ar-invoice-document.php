@@ -743,24 +743,24 @@
           </div>
           <!--Body-->
           <div class="modal-body">
-		  <div class="row mb-3">
-						<div class="col-sm-2" >
-							<label for="inputEmail3" class=" col-form-label " style="color: black;" >Search</label>
-						</div>
-						<div class="col-4">					
-							<div class="input-group mb-1">
-								<input type="text" id="txtCardCodeSearch" class="form-control" placeholder="" style="border-bottom-left-radius:5px; border-top-left-radius:5px;">
-								<div class="input-group-append">
-									<button id="btnCardCodeSearch" class="btn btnGroup" type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; "  >
-										<i class="fa fa-search" tabindex=0 style="color:blue "></i>
-									</button>
-								</div>
-							</div>
+		  	<div class="row mb-3">
+				<div class="col-sm-2" >
+					<label for="inputEmail3" class=" col-form-label " style="color: black;" >Search</label>
+				</div>
+				<div class="col-4">					
+					<div class="input-group mb-1">
+						<input type="text" id="txtCardCodeSearch" class="form-control" placeholder="" style="border-bottom-left-radius:5px; border-top-left-radius:5px;">
+						<div class="input-group-append">
+							<button id="btnCardCodeSearch" class="btn btnGroup" type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; "  >
+								<i class="fa fa-search" tabindex=0 style="color:blue "></i>
+							</button>
 						</div>
 					</div>
+				</div>
+			</div>
             <table class="tblBP table table-striped table-bordered table-hover" id="tblBP" style="width: 100%">
 					
-					</table>
+			</table>
           </div>
           <!--Footer-->
           <div class="modal-footer">
