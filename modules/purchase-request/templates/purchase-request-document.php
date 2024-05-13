@@ -706,59 +706,24 @@ include '../../head.php' ;
           </div>
           <!--Body-->
           <div class="modal-body">
+		  	<div class="row mb-3">
+				<div class="col-sm-2" >
+					<label for="inputEmail3" class=" col-form-label " style="color: black;" >Search</label>
+				</div>
+				<div class="col-4">					
+					<div class="input-group mb-1">
+						<input type="text" id="txtCardCodeSearch" class="form-control" placeholder="" style="border-bottom-left-radius:5px; border-top-left-radius:5px;">
+						<div class="input-group-append">
+							<button id="btnCardCodeSearch" class="btn btnGroup" type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; "  >
+								<i class="fa fa-search" tabindex=0 style="color:blue "></i>
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
             <table class="tblBP table table-striped table-bordered table-hover" id="tblBP" style="width: 100%">
-						<thead>
-							<tr>
-								<th >#</th>
-								<th>User Code</th>
-								<th>User Name</th>
-								<th class="d-none">Branch Code</th>
-								<th>Branch Name</th>
-								<th class="d-none">Department Code</th>
-								<th>Department Name</th>
-								<th class="d-none">User ID</th>
-							
-							</tr>
-						</thead>
-						<tbody>
-						<?php
-							$itemno = 1;
-							$qry = odbc_exec($MSSQL_CONN, "USE [".$MSSQL_DB."]; 	SELECT 
-																					T0.UserId,
-																					T0.EmpID,
-																					T2.Code AS 'BranchCode',
-																					T2.Name AS 'BranchName',
-																					T3.Code AS 'DepertmentCode',
-																					T3.Name AS 'DepertmentName',
-																					
-																					CONCAT(T0.firstName, ' ',T0.lastName) AS Name
-																						
-																					FROM OHEM T0
-																					LEFT JOIN OUBR T2 ON T0.Branch = T2.Code 
-																					LEFT JOIN OUDP T3 ON T0.Dept = T3.Code
-																					
-																					ORDER BY T0.EmpID ASC");
-								while (odbc_fetch_row($qry)) 
-								{
-									echo '<tr class="tableHover">
-												<td>'.$itemno.'</td>
-												<td class="item-1">'.odbc_result($qry, 'EmpID').'</td>
-												<td class="item-2">'.odbc_result($qry, 'Name').'</td>
-												<td class="item-3 d-none">'.odbc_result($qry, 'BranchCode').'</td>
-												<td class="item-4">'.odbc_result($qry, 'BranchName').'</td>
-												<td class="item-5 d-none">'.odbc_result($qry, 'DepertmentCode').'</td>
-												<td class="item-6 ">'.odbc_result($qry, 'DepertmentName').'</td>
-												<td class="item-7 d-none">'.odbc_result($qry, 'UserId').'</td>
-											  </tr>';
-									$itemno++;	  
-								}
-								
-								odbc_free_result($qry);
-							
-
-						?>
-						</tbody>
-					</table>
+					
+			</table>
           </div>
                 <!--Footer-->
                 <div class="modal-footer">
