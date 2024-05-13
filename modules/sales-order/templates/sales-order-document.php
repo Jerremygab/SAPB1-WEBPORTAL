@@ -233,7 +233,7 @@
           
 	
 	<ul class="nav nav-tabs pt-2" id="myTab" role="tablist">
-  <li class="nav-item " style="">
+  <li class="nav-item ">
     <a class="nav-link active " id="" data-toggle="tab" href="#contents" role="tab" aria-controls="contents"
       aria-selected="true" style="color: black; font-weight:bold">Contents</a>
   </li>
@@ -253,7 +253,7 @@
 	<div class="form-group row  mb-0" >
 		<div class="col-sm-4 row">
 		<label for="inputEmail3" class="col-sm-4 col-form-label pr-0" style="color: black; font-size:15px" >Item/Service Type</label>
-			<select id="selTransactionType" class="col-sm-3 form-control-sm mdb-select md-form text-left" searchable="Search here.." style=" !important;outline:none; border-color: #D0D0D0;">
+			<select id="selTransactionType" class="col-sm-3 form-control-sm mdb-select md-form text-left" searchable="Search here.." style=" outline:none !important; border-color: #D0D0D0;">
 				<option class="text-center" value="I" >Item</option>
 				<option class="text-center" value="S" >Service</option>
 				<input type="hidden" id="rowLoader" name="rowLoader" class="form-control input-sm">
@@ -303,7 +303,7 @@
 									<input readonly type="text" id="txtSalesEmpCode" class="form-control d-none" placeholder="" aria-label="Username" aria-describedby="basic-addon1" value="1">
 									<input readonly type="text" id="txtSalesEmpName" class="form-control inputRadius" placeholder="" aria-label="Username" aria-describedby="basic-addon1" style="border-bottom-left-radius:5px; border-top-left-radius:5px;" value="-No Sales Employee-">
 									<div class="input-group-append">
-										<button class="btn btnGroup"   type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; hover:"  data-toggle="modal" data-target="#salesEmpModal" data-backdrop="false">
+										<button class="btn btnGroup"   type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; "  data-toggle="modal" data-target="#salesEmpModal" data-backdrop="false">
 											<i class="fas fa-list-ul input-prefix" tabindex=0 style="color:blue "></i>
 										</button>
 									</div>
@@ -315,14 +315,14 @@
 							<div class="col-sm-9 " >
 							<div class="input-group mb-1">
 								<div class="input-group-prepend " id="lnkEmployee">
-									<button class="btn"   type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; hover:"  data-toggle="modal" data-target="#" data-backdrop="false">
+									<button class="btn"   type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; "  data-toggle="modal" data-target="#" data-backdrop="false">
 										<i class="fas fa-arrow-right  " style="color: #FFD700; font-size:20px"></i>
 									</button>
 								</div>
 							  <input readonly type="text" class="form-control d-none" id="txtOwnerCode" value="<?php echo $EmpId?>">
 							  <input readonly type="text" class="form-control inputRadius" id="txtOwnerName" style="border-bottom-left-radius:5px; border-top-left-radius:5px;" value="<?php echo $UserName?>">
 							  <div class="input-group-append">
-										<button class="btn btnGroup"   type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; hover:"  data-toggle="modal" data-target="#empModal" data-backdrop="false">
+										<button class="btn btnGroup"   type="button" data-mdb-ripple-color="dark"  style="background-color: #ADD8E6; "  data-toggle="modal" data-target="#empModal" data-backdrop="false">
 											<i class="fas fa-list-ul input-prefix" tabindex=0 style="color:blue "></i>
 										</button>
 									</div>
@@ -376,7 +376,7 @@
 				<div  id="footerButtons" class="form-group row  mt-5 ">
 					<div class="col-lg-6 col-md-6 col-sm-6 text-left">
 						<button type="button" id="btnAdd" class="  btn btn-warning btn-rounded " style="color: black; font-weight: bold; width:250px; background: linear-gradient(to bottom, #FCF6BA, #BF953F);" >Add</button>
-						<button type="button" id="btnUpdate" class="  btn btn-warning btn-rounded d-none" style="color:black; font-weight: bold; black;width:250px; background: linear-gradient(to bottom, #FCF6BA, #BF953F);" >Update</button>
+						<button type="button" id="btnUpdate" class="  btn btn-warning btn-rounded d-none" style="color:black; font-weight: bold;width:250px; background: linear-gradient(to bottom, #FCF6BA, #BF953F);" >Update</button>
 						<button type="button" id="btnCancel" class=" btn btn-warning btn-rounded ml-5" style="color: black;width:250px; font-weight: bold; background: linear-gradient(to bottom, #FCF6BA, #BF953F);">Cancel</button>
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 text-right">
